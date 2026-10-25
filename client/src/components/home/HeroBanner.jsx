@@ -1,7 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Volume2, VolumeX } from 'lucide-react';
 import rings from '../../assets/Rings.png';
+import earings from '../../assets/earings.png';
+import pendants from '../../assets/pendants.png';
+import chains from '../../assets/chains.png';
+import watchAccessories from '../../assets/watch.png';
+import necklaces from '../../assets/necklace.png';
+import goldcoins from '../../assets/goldcoins.png';
+import bangles from '../../assets/bangles.png';
+import kadas from '../../assets/kadas.png';
+import anklets from '../../assets/anklets.png';
+import kidsJewellery from '../../assets/kidsjewellery.png';
+import nosepins from '../../assets/nodepins.png';
+import mangalsutras from '../../assets/mangalsutras.png';
+import bracelets from '../../assets/bracelets.png';
+import mensJewellery from '../../assets/mensjewellery.png';
+import solitaires from '../../assets/solitaires.png';
 
 const categories = [
   {
@@ -9,126 +23,101 @@ const categories = [
     className: 'cat-rings',
     path: '/jewellery/rings',
     image: rings,
-    },
+  },
   {
     name: 'Earrings',
     className: 'cat-earrings',
     path: '/jewellery/earrings',
-    image:
-      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1200&q=85',
+    image: earings,
   },
   {
     name: 'Pendants',
     className: 'cat-pendants',
     path: '/jewellery/pendants',
-    image:
-      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=85',
+    image: pendants,
   },
   {
     name: 'Chains',
     className: 'cat-chains',
     path: '/jewellery/chains',
-    image:
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=85',
+    image: chains,
   },
   {
     name: 'Watch Accessories',
     className: 'cat-water',
     path: '/jewellery/accessories',
-    image:
-      'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=85',
+    image: watchAccessories,
   },
   {
     name: 'Necklaces',
     className: 'cat-necklaces',
     path: '/jewellery/necklaces',
-    image:
-      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=85',
+    image: necklaces,
   },
   {
     name: 'Gold Coins',
     className: 'cat-coins',
     path: '/gold-coins',
-    image:
-      'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=85',
+    image: goldcoins,
   },
   {
     name: 'Bangles',
     className: 'cat-bangles',
     path: '/jewellery/bangles',
-    image:
-      'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=85',
+    image: bangles,
   },
   {
     name: 'Kadas',
     className: 'cat-kadas',
     path: '/jewellery/kadas',
-    image:
-      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=85',
+    image: kadas,
   },
   {
     name: 'Anklets',
     className: 'cat-anklets',
     path: '/jewellery/anklets',
-    image:
-      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=85',
+    image: anklets,
   },
   {
     name: 'Kids Jewellery',
     className: 'cat-kids',
     path: '/jewellery/kids',
-    image:
-      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=85',
+    image: kidsJewellery,
   },
   {
     name: 'Nose Pins',
     className: 'cat-nosepins',
     path: '/jewellery/nose-pins',
-    image:
-      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85',
+    image: nosepins,
   },
   {
     name: 'Mangalsutras',
     className: 'cat-mangalsutras',
     path: '/jewellery/mangalsutras',
-    image:
-      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=85',
+    image: mangalsutras,
   },
   {
     name: 'Bracelets',
     className: 'cat-bracelets',
     path: '/jewellery/bracelets',
-    image:
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=85',
+    image: bracelets,
   },
   {
     name: "Men's Jewellery",
     className: 'cat-mens',
     path: '/jewellery/mens',
-    image:
-      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=85',
+    image: mensJewellery,
   },
   {
     name: 'Solitaires',
     className: 'cat-solitaires',
     path: '/jewellery/solitaires',
-    image:
-      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=85',
+    image: solitaires,
   },
 ];
 
 export default function HeroBanner() {
-  const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(true);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
-  const toggleSound = () => {
-    if (!videoRef.current) return;
-
-    const nextMuted = !isMuted;
-    videoRef.current.muted = nextMuted;
-    setIsMuted(nextMuted);
-  };
 
   return (
     <div className="bluestone-home">
@@ -146,7 +135,10 @@ export default function HeroBanner() {
           font-family: Georgia, 'Times New Roman', serif;
         }
 
-        /* HERO VIDEO */
+        /* =========================
+           HERO VIDEO
+        ========================= */
+
         .hero-video-section {
           position: relative;
           width: 100%;
@@ -158,8 +150,8 @@ export default function HeroBanner() {
           position: relative;
           width: 100%;
           max-width: 1920px;
-          max-height: 640px;
-          aspect-ratio: 2.4 / 1;
+          height: min(36vw, 590px);
+          min-height: 0;
           margin: 0 auto;
           overflow: hidden;
           background: #7d3038;
@@ -187,35 +179,15 @@ export default function HeroBanner() {
           );
         }
 
-        .hero-sound-button {
-          position: absolute;
-          right: 24px;
-          bottom: 24px;
-          z-index: 2;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 44px;
-          height: 44px;
-          border: 1px solid rgba(255, 255, 255, 0.65);
-          border-radius: 50%;
-          background: rgba(15, 15, 15, 0.45);
-          color: white;
-          cursor: pointer;
-          backdrop-filter: blur(8px);
-          transition: background 200ms ease;
-        }
+        /* =========================
+           SHOP BY CATEGORY SECTION
+        ========================= */
 
-        .hero-sound-button:hover {
-          background: rgba(15, 15, 15, 0.75);
-        }
-
-        /* CATEGORY SECTION: seamless video transition */
         .shop-category-section {
           position: relative;
           width: 100%;
           margin-top: -1px;
-          padding: 12px 0 32px;
+          padding: 4px 0 32px;
           background: linear-gradient(
             180deg,
             #7d3038 0%,
@@ -231,12 +203,16 @@ export default function HeroBanner() {
           color: #fff;
           font-family: Georgia, 'Times New Roman', serif;
           font-size: clamp(30px, 3vw, 42px);
+          font-style: italic;
           font-weight: 500;
           line-height: 1.2;
           text-align: center;
         }
 
-        /* DESKTOP: 5-column reference layout */
+        /* =========================
+           CATEGORY GRID
+        ========================= */
+
         .shop-category-grid {
           display: grid;
           width: 86%;
@@ -248,6 +224,10 @@ export default function HeroBanner() {
           gap: 6px;
         }
 
+        /* =========================
+           CATEGORY CARD
+        ========================= */
+
         .shop-category-card {
           position: relative;
           display: block;
@@ -255,11 +235,39 @@ export default function HeroBanner() {
           min-height: 0;
           overflow: hidden;
           border-radius: 18px;
-          background: #3b2928;
-          box-shadow: 0 7px 15px rgba(0, 0, 0, 0.28);
+          background: linear-gradient(
+            135deg,
+            #7d3038,
+            #d4a6a6
+          );
+          box-shadow: 0 7px 15px rgba(0, 0, 0, 0.22);
           text-decoration: none;
           isolation: isolate;
+          transform: scale(1);
+          z-index: 1;
+
+          transition:
+            transform 450ms ease,
+            box-shadow 450ms ease;
         }
+
+        /* Full card zoom */
+        .shop-category-card:hover {
+          transform: scale(1.035);
+          box-shadow: 0 14px 28px rgba(65, 20, 27, 0.35);
+          z-index: 5;
+        }
+
+        /* Keyboard accessibility */
+        .shop-category-card:focus-visible {
+          outline: 3px solid #fff;
+          outline-offset: 3px;
+          z-index: 6;
+        }
+
+        /* =========================
+           CATEGORY IMAGE
+        ========================= */
 
         .shop-category-image {
           position: absolute;
@@ -269,12 +277,20 @@ export default function HeroBanner() {
           height: 100%;
           object-fit: cover;
           object-position: center;
-          transition: transform 450ms ease;
+
+          transition:
+            transform 600ms cubic-bezier(0.2, 0.7, 0.3, 1),
+            filter 450ms ease;
         }
 
         .shop-category-card:hover .shop-category-image {
-          transform: scale(1.045);
+          transform: scale(1.08);
+          filter: brightness(0.88) saturate(1.08);
         }
+
+        /* =========================
+           GRADIENT OVERLAY
+        ========================= */
 
         .shop-category-card::after {
           position: absolute;
@@ -282,13 +298,28 @@ export default function HeroBanner() {
           z-index: 1;
           background: linear-gradient(
             to top,
-            rgba(0, 0, 0, 0.7) 0%,
-            rgba(0, 0, 0, 0.15) 27%,
-            transparent 58%
+            rgba(55, 15, 24, 0.82) 0%,
+            rgba(125, 48, 56, 0.30) 35%,
+            rgba(212, 166, 166, 0.05) 70%,
+            transparent 100%
           );
           content: '';
           pointer-events: none;
+          transition: background 450ms ease;
         }
+
+        .shop-category-card:hover::after {
+          background: linear-gradient(
+            135deg,
+            rgba(125, 48, 56, 0.30) 0%,
+            rgba(125, 48, 56, 0.05) 35%,
+            rgba(55, 15, 24, 0.88) 100%
+          );
+        }
+
+        /* =========================
+           CATEGORY TITLE
+        ========================= */
 
         .shop-category-name {
           position: absolute;
@@ -302,10 +333,22 @@ export default function HeroBanner() {
           font-size: clamp(17px, 1.35vw, 24px);
           font-weight: 600;
           line-height: 1.2;
-          text-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+
+          transition:
+            transform 450ms ease,
+            text-shadow 450ms ease;
         }
 
-        /* Row 1 */
+        .shop-category-card:hover .shop-category-name {
+          transform: translateY(-4px);
+          text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        /* =========================
+           DESKTOP CATEGORY POSITIONS
+        ========================= */
+
         .cat-rings {
           grid-column: 1;
           grid-row: 1 / span 2;
@@ -326,7 +369,6 @@ export default function HeroBanner() {
           grid-row: 1;
         }
 
-        /* Row 2 */
         .cat-water {
           grid-column: 2;
           grid-row: 2;
@@ -342,7 +384,6 @@ export default function HeroBanner() {
           grid-row: 2;
         }
 
-        /* Row 3 */
         .cat-bangles {
           grid-column: 1 / span 2;
           grid-row: 3;
@@ -353,7 +394,6 @@ export default function HeroBanner() {
           grid-row: 3;
         }
 
-        /* Rows 4 and 5 */
         .cat-anklets {
           grid-column: 1;
           grid-row: 4;
@@ -389,9 +429,14 @@ export default function HeroBanner() {
           grid-row: 4 / span 2;
         }
 
-        /* TABLET */
+        /* =========================
+           TABLET
+        ========================= */
+
         @media (min-width: 601px) and (max-width: 1000px) {
           .hero-video-frame {
+            height: auto;
+            min-height: 0;
             aspect-ratio: 16 / 9;
           }
 
@@ -411,28 +456,30 @@ export default function HeroBanner() {
             left: 10px;
             font-size: 17px;
           }
+
+          .shop-category-card:hover {
+            transform: scale(1.02);
+          }
         }
 
-        /* MOBILE */
+        /* =========================
+           MOBILE
+        ========================= */
+
         @media (max-width: 600px) {
           .hero-video-frame {
+            width: 100%;
+            height: auto;
+            min-height: 0;
             aspect-ratio: 4 / 3;
-            max-height: none;
           }
 
           .hero-video {
             object-position: center;
           }
 
-          .hero-sound-button {
-            right: 12px;
-            bottom: 12px;
-            width: 38px;
-            height: 38px;
-          }
-
           .shop-category-section {
-            padding: 22px 0 24px;
+            padding: 8px 0 24px;
             background: linear-gradient(
               180deg,
               #7d3038 0%,
@@ -486,6 +533,30 @@ export default function HeroBanner() {
             grid-column: span 2;
             grid-row: span 2;
           }
+
+          /* Avoid excessive zoom on narrow screens */
+          .shop-category-card:hover {
+            transform: scale(1.015);
+          }
+        }
+
+        /* Reduced motion accessibility */
+        @media (prefers-reduced-motion: reduce) {
+          .shop-category-card,
+          .shop-category-image,
+          .shop-category-card::after,
+          .shop-category-name,
+          .hero-video {
+            transition: none;
+          }
+
+          .shop-category-card:hover {
+            transform: none;
+          }
+
+          .shop-category-card:hover .shop-category-image {
+            transform: none;
+          }
         }
       `}</style>
 
@@ -493,10 +564,9 @@ export default function HeroBanner() {
       <section className="hero-video-section">
         <div className="hero-video-frame">
           <video
-            ref={videoRef}
             className="hero-video"
             autoPlay
-            muted={isMuted}
+            muted
             playsInline
             loop
             preload="metadata"
@@ -510,25 +580,14 @@ export default function HeroBanner() {
               src="https://kinvid1.bluestone.com/output/mp4/VL_VIDEO_1.mp4/VL_VIDEO_1.mp4"
               type="video/mp4"
             />
-            <source src="/videos/VL_VIDEO_1.mp4" type="video/mp4" />
+            <source
+              src="/videos/VL_VIDEO_1.mp4"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
 
           <div className="hero-video-overlay" />
-
-          <button
-            type="button"
-            className="hero-sound-button"
-            onClick={toggleSound}
-            aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-            title={isMuted ? 'Turn sound on' : 'Turn sound off'}
-          >
-            {isMuted ? (
-              <VolumeX size={21} />
-            ) : (
-              <Volume2 size={21} />
-            )}
-          </button>
         </div>
       </section>
 

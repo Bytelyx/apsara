@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Clock,
-  Video,
   MapPin,
   Heart,
   ShoppingBag,
@@ -12,7 +11,6 @@ import {
   ChevronDown,
 } from 'lucide-react';
 
-// import AnnouncementBar from './AnnouncementBar';
 import SearchBar from './SearchBar';
 import MegaMenu from './MegaMenu';
 
@@ -36,7 +34,6 @@ const rightNavItems = [
   { label: 'Offers', url: '/jewellery' },
 ];
 
-const GOLD = '#C9A45C';
 const NAVY = '#011E38';
 
 function BrandLogo({ compact = false }) {
@@ -51,7 +48,7 @@ function BrandLogo({ compact = false }) {
       <span
         aria-hidden="true"
         className={`flex items-center justify-center rounded-full border border-[#C9A45C] font-serif font-semibold text-[#C9A45C] ${
-          compact ? 'h-8 w-8 text-lg' : 'h-11 w-11 text-2xl'
+          compact ? 'h-8 w-8 text-lg' : 'h-10 w-10 text-xl'
         }`}
       >
         A
@@ -59,7 +56,7 @@ function BrandLogo({ compact = false }) {
 
       <span
         className={`font-serif font-semibold tracking-[0.16em] text-[#011E38] ${
-          compact ? 'text-xl' : 'text-2xl md:text-3xl'
+          compact ? 'text-xl' : 'text-2xl md:text-[29px]'
         }`}
       >
         APSARA
@@ -78,12 +75,14 @@ function HeaderAction({ to, icon: Icon, label, count, onClick }) {
     <>
       <span className="relative inline-flex">
         <Icon className="h-5 w-5" strokeWidth={1.6} />
+
         {count > 0 && (
           <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#C9A45C] px-1 text-[9px] font-bold text-white">
             {count}
           </span>
         )}
       </span>
+
       <span className="whitespace-nowrap text-[10px] font-medium md:text-[11px]">
         {label}
       </span>
@@ -129,7 +128,9 @@ export default function SiteHeader() {
       setIsSticky(window.scrollY > 80);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -158,26 +159,21 @@ export default function SiteHeader() {
     }, 180);
   };
 
-  const allItems = [...navItems, ...rightNavItems];
-
   return (
     <header className="relative z-40 w-full overflow-visible bg-white shadow-sm">
-      {/* Announcement bar */}
-      {/* <AnnouncementBar /> */}
-
-      {/* Main desktop header */}
+      {/* Compact Desktop Header */}
       <div className="hdr-desktop border-b border-gray-200/70 bg-white">
         <div className="container-fluid px-4">
-          <div className="flex min-h-[70px] items-center justify-between gap-4 py-3">
-            {/* APSARA brand logo */}
+          <div className="flex h-[74px] items-center justify-between gap-3">
+            {/* Brand Logo */}
             <BrandLogo />
 
-            {/* Search */}
+            {/* Search Bar */}
             <div className="min-w-0 flex-1">
               <SearchBar />
             </div>
 
-            {/* Header actions */}
+            {/* Header Actions */}
             <div className="flex shrink-0 items-center justify-end">
               <HeaderAction
                 to="/jewellery"
@@ -186,14 +182,6 @@ export default function SiteHeader() {
               />
 
               <span className="mx-1 h-7 w-px bg-gray-200" />
-
-              {/* <HeaderAction
-                to="/stores"
-                icon={Video}
-                label="Video call"
-              /> */}
-
-              {/* <span className="mx-1 h-7 w-px bg-gray-200" /> */}
 
               <HeaderAction
                 to="/stores"
@@ -228,6 +216,7 @@ export default function SiteHeader() {
                 aria-label="Profile"
               >
                 <User className="h-5 w-5" strokeWidth={1.6} />
+
                 <span className="max-w-20 truncate text-[10px] font-medium md:text-[11px]">
                   {isLoggedIn
                     ? user?.name?.split(' ')[0] || 'Profile'
@@ -235,15 +224,19 @@ export default function SiteHeader() {
                 </span>
               </button>
 
+              {/* More Menu */}
               <div className="relative">
                 <button
                   type="button"
-                  onClick={() => setIsMoreOpen((previous) => !previous)}
+                  onClick={() =>
+                    setIsMoreOpen((previous) => !previous)
+                  }
                   className="flex flex-col items-center gap-1 px-2 py-1 text-[#011E38] hover:text-[#A88745]"
                   aria-label="More options"
                   aria-expanded={isMoreOpen}
                 >
                   <MoreVertical className="h-5 w-5" />
+
                   <span className="text-[10px] font-medium md:text-[11px]">
                     More
                   </span>
@@ -299,7 +292,7 @@ export default function SiteHeader() {
         </div>
       </div>
 
-      {/* Desktop navigation: no duplicate floating logo */}
+      {/* Desktop Navigation */}
       <nav
         className={`relative z-40 w-full ${
           isSticky ? 'sticky top-0 shadow-lg' : ''
@@ -308,12 +301,13 @@ export default function SiteHeader() {
         onMouseLeave={handleMenuLeave}
       >
         <div className="container-fluid px-4">
-          <div className="flex min-h-12 items-center justify-between gap-3">
+          <div className="flex h-[52px] items-center justify-between gap-2">
+            {/* Left Navigation */}
             <ul className="flex min-w-0 flex-1 items-center justify-start gap-1 xl:gap-2">
               {navItems.map((item) => (
                 <li
                   key={item.label}
-                  className="flex h-12 shrink-0 items-center"
+                  className="flex h-[52px] shrink-0 items-center"
                   onMouseEnter={() => handleMenuEnter(item.label)}
                 >
                   <Link
@@ -325,6 +319,7 @@ export default function SiteHeader() {
                     }`}
                   >
                     {item.label}
+
                     <ChevronDown
                       className={`h-3 w-3 transition-transform ${
                         activeMenu === item.label ? 'rotate-180' : ''
@@ -335,11 +330,12 @@ export default function SiteHeader() {
               ))}
             </ul>
 
+            {/* Right Navigation */}
             <ul className="flex shrink-0 items-center gap-1 xl:gap-2">
               {rightNavItems.map((item) => (
                 <li
                   key={item.label}
-                  className="flex h-12 shrink-0 items-center"
+                  className="flex h-[52px] shrink-0 items-center"
                   onMouseEnter={() => handleMenuEnter(item.label)}
                 >
                   <Link
@@ -351,6 +347,7 @@ export default function SiteHeader() {
                     }`}
                   >
                     {item.label}
+
                     <ChevronDown
                       className={`h-3 w-3 transition-transform ${
                         activeMenu === item.label ? 'rotate-180' : ''
