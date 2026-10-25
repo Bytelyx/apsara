@@ -193,7 +193,7 @@ export default function HeroBanner() {
             #7d3038 0%,
             #a45d64 16%,
             #d4a6a6 48%,
-            #f3e0dc 100%
+            #fffefd 100%
           );
         }
 
