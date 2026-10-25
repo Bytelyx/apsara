@@ -1,6 +1,5 @@
 import React from 'react';
 import HeroBanner from '../components/home/HeroBanner';
-import CategoryMenuSection from '../components/home/CategoryMenuSection';
 import GoldMineStrip from '../components/home/GoldMineStrip';
 import BannerCarouselSection from '../components/home/BannerCarouselSection';
 import FeaturedProductsSection from '../components/home/FeaturedProductsSection';
@@ -23,9 +22,6 @@ export default function HomePage() {
     <main className="min-h-screen bg-white">
       {/* 1. Hero Banner with Exact VL_VIDEO_1.mp4 */}
       <HeroBanner />
-
-      {/* 2. Category Circles Menu */}
-      <CategoryMenuSection />
 
       {/* 3. Gold Mine 10+1 Strip Banner */}
       <GoldMineStrip />

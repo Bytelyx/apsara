@@ -1,7 +1,18 @@
+
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from 'react-router-dom';
+
 import { CartProvider } from './context/CartContext';
-import { WishlistProvider, useWishlist } from './context/WishlistContext';
+import {
+  WishlistProvider,
+  useWishlist,
+} from './context/WishlistContext';
 import { AuthProvider } from './context/AuthContext';
 
 import SiteHeader from './components/header/SiteHeader';
@@ -19,18 +30,23 @@ import StoreLocatorPage from './pages/StoreLocatorPage';
 import GoldMinePage from './pages/GoldMinePage';
 import NotFoundPage from './pages/NotFoundPage';
 
-// Scroll to top on every route transition
 function ScrollToTop() {
   const { pathname } = useLocation();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant',
+    });
   }, [pathname]);
+
   return null;
 }
 
-// Global Toast for Wishlist / Cart Actions
 function GlobalToast() {
   const { toastMessage } = useWishlist();
+
   if (!toastMessage) return null;
 
   return (
@@ -47,30 +63,67 @@ export default function App() {
         <CartProvider>
           <Router>
             <ScrollToTop />
+
             <div className="flex flex-col min-h-screen bg-white text-gray-900 font-sans selection:bg-[#011E38] selection:text-white">
-              
-              {/* Header (Desktop + Mobile) */}
               <SiteHeader />
               <MobileNavigation />
 
-              {/* Main Page Route View */}
               <div className="flex-1">
                 <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/jewellery" element={<ProductListingPage />} />
-                  <Route path="/product/:slug" element={<ProductDetailPage />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/wishlist" element={<WishlistPage />} />
-                  <Route path="/stores" element={<StoreLocatorPage />} />
-                  <Route path="/goldmine" element={<GoldMinePage />} />
-                  <Route path="*" element={<NotFoundPage />} />
+                  <Route
+                    path="/"
+                    element={<HomePage />}
+                  />
+
+                  <Route
+                    path="/jewellery"
+                    element={<ProductListingPage />}
+                  />
+
+                  <Route
+                    path="/jewellery/:category"
+                    element={<ProductListingPage />}
+                  />
+
+                  {/* Redirect old Gold Coins URL */}
+                  <Route
+                    path="/gold-coins"
+                    element={<Navigate to="/jewellery/gold-coins" replace />}
+                  />
+
+                  <Route
+                    path="/product/:slug"
+                    element={<ProductDetailPage />}
+                  />
+
+                  <Route
+                    path="/cart"
+                    element={<CartPage />}
+                  />
+
+                  <Route
+                    path="/wishlist"
+                    element={<WishlistPage />}
+                  />
+
+                  <Route
+                    path="/stores"
+                    element={<StoreLocatorPage />}
+                  />
+
+                  <Route
+                    path="/goldmine"
+                    element={<GoldMinePage />}
+                  />
+
+                  <Route
+                    path="*"
+                    element={<NotFoundPage />}
+                  />
                 </Routes>
               </div>
 
-              {/* Site Footer */}
               <SiteFooter />
-
-              {/* Interactive Overlays */}
               <CartDrawer />
               <AuthModal />
               <GlobalToast />

@@ -57,7 +57,7 @@ const categories = [
   {
     name: 'Gold Coins',
     className: 'cat-coins',
-    path: '/gold-coins',
+    path: '/jewellery/gold-coins',
     image: goldcoins,
   },
   {
