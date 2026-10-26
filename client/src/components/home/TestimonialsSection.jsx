@@ -15,7 +15,7 @@ const REVIEWS = [
     city: "Bengaluru",
     product: "The Culaan Ring",
     rating: 5,
-    text: "BlueStone's Try-at-Home service was what converted me. The consultant brought 5 different rings to my doorstep. Unbelievable convenience and transparency!",
+    text: "Apsara's Try-at-Home service was what converted me. The consultant brought 5 different rings to my doorstep. Unbelievable convenience and transparency!",
     image: "https://kinclimg5.bluestone.com/f_webp/static/hp/m/bm2.png"
   },
   {
@@ -31,7 +31,7 @@ const REVIEWS = [
     city: "Pune",
     product: "The Love Peace Fidget Pendant",
     rating: 5,
-    text: "I was skeptical about buying diamonds online, but BlueStone exceeded all expectations. The sparkle of the stones is surreal and the design is truly unique.",
+    text: "I was skeptical about buying diamonds online, but Apsara exceeded all expectations. The sparkle of the stones is surreal and the design is truly unique.",
     image: "https://kinclimg5.bluestone.com/f_webp/static/hp/m/bm4.png"
   },
   {
@@ -65,7 +65,7 @@ export default function TestimonialsSection() {
               <span>Real Customer Stories</span>
             </div>
             <h2 className="font-serif text-3xl font-bold text-bluestone-navy">
-              #BlueStoneAndMe
+              #ApsaraAndMe
             </h2>
             <p className="text-xs sm:text-sm text-gray-500 mt-1">
               Read how over 1 Million happy patrons celebrate their special milestones with us.

@@ -1,269 +1,281 @@
+import React, { useState, useEffect } from 'react';
+import { useSearchParams, Link } from 'react-router-dom';
+import ProductCard from '../components/product/ProductCard';
+import { fetchProducts } from '../services/api';
+import { CATEGORIES, METALS } from '../data/productsData';
+import { Filter, SlidersHorizontal, ArrowUpDown, X, ChevronRight } from 'lucide-react';
 
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
-import "./ProductList.css";
+export default function ProductListingPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-// Demo products — replace with your existing products when ready.
-const products = [
-  {
-    id: 1,
-    name: "Classic Gold Ring",
-    price: 12500,
-    category: "rings",
-    image: "/images/gold-ring.png",
-  },
-  {
-    id: 2,
-    name: "Diamond Gold Ring",
-    price: 18500,
-    category: "rings",
-    image: "/images/diamond-ring.png",
-  },
-  {
-    id: 3,
-    name: "Gold Earrings",
-    price: 9500,
-    category: "earrings",
-    image: "/images/gold-earrings.png",
-  },
-  {
-    id: 4,
-    name: "Traditional Earrings",
-    price: 14500,
-    category: "earrings",
-    image: "/images/traditional-earrings.png",
-  },
-  {
-    id: 5,
-    name: "Gold Pendant",
-    price: 8500,
-    category: "pendants",
-    image: "/images/gold-pendant.png",
-  },
-  {
-    id: 6,
-    name: "Gold Chain",
-    price: 22000,
-    category: "chains",
-    image: "/images/gold-chain.png",
-  },
-  {
-    id: 7,
-    name: "Gold Coin 1 Gram",
-    price: 7500,
-    category: "gold-coins",
-    image: "/images/gold-coin.png",
-  },
-  {
-    id: 8,
-    name: "Gold Coin 2 Grams",
-    price: 15000,
-    category: "gold-coins",
-    image: "/images/gold-coin.png",
-  },
-  {
-    id: 9,
-    name: "Gold Bangles",
-    price: 35000,
-    category: "bangles",
-    image: "/images/gold-bangles.png",
-  },
-  {
-    id: 10,
-    name: "Gold Necklace",
-    price: 45000,
-    category: "necklaces",
-    image: "/images/gold-necklace.png",
-  },
-  {
-    id: 11,
-    name: "Gold Kada",
-    price: 28000,
-    category: "kadas",
-    image: "/images/gold-kada.png",
-  },
-  {
-    id: 12,
-    name: "Gold Anklet",
-    price: 12000,
-    category: "anklets",
-    image: "/images/gold-anklet.png",
-  },
-  {
-    id: 13,
-    name: "Kids Gold Jewellery",
-    price: 10000,
-    category: "kids",
-    image: "/images/kids-jewellery.png",
-  },
-  {
-    id: 14,
-    name: "Gold Nose Pin",
-    price: 3500,
-    category: "nose-pins",
-    image: "/images/nose-pin.png",
-  },
-  {
-    id: 15,
-    name: "Gold Mangalsutra",
-    price: 25000,
-    category: "mangalsutras",
-    image: "/images/mangalsutra.png",
-  },
-  {
-    id: 16,
-    name: "Gold Bracelet",
-    price: 18000,
-    category: "bracelets",
-    image: "/images/gold-bracelet.png",
-  },
-  {
-    id: 17,
-    name: "Men's Gold Jewellery",
-    price: 30000,
-    category: "mens",
-    image: "/images/mens-jewellery.png",
-  },
-  {
-    id: 18,
-    name: "Diamond Solitaire",
-    price: 55000,
-    category: "solitaires",
-    image: "/images/solitaire.png",
-  },
-  {
-    id: 19,
-    name: "Watch Accessory",
-    price: 15000,
-    category: "accessories",
-    image: "/images/watch-accessory.png",
-  },
-];
+  const currentCategory = searchParams.get('category') || 'All';
+  const currentMetal = searchParams.get('metal') || 'All Metals';
+  const searchQuery = searchParams.get('search') || '';
+  const currentSort = searchParams.get('sort') || 'popular';
 
-const categoryNames = {
-  rings: "Rings",
-  earrings: "Earrings",
-  pendants: "Pendants",
-  chains: "Chains",
-  accessories: "Watch Accessories",
-  necklaces: "Necklaces",
-  "gold-coins": "Gold Coins",
-  bangles: "Bangles",
-  kadas: "Kadas",
-  anklets: "Anklets",
-  kids: "Kids Jewellery",
-  "nose-pins": "Nose Pins",
-  mangalsutras: "Mangalsutras",
-  bracelets: "Bracelets",
-  mens: "Men's Jewellery",
-  solitaires: "Solitaires",
-};
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
-export default function ProductList() {
-  const location = useLocation();
+  useEffect(() => {
+    let isMounted = true;
+    setLoading(true);
 
-  const pathParts = location.pathname
-    .split("/")
-    .filter(Boolean);
+    fetchProducts({
+      category: currentCategory,
+      metal: currentMetal,
+      search: searchQuery,
+      sort: currentSort,
+    }).then((data) => {
+      if (isMounted) {
+        setProducts(data);
+        setLoading(false);
+      }
+    });
 
-  const selectedCategory =
-    pathParts[0] === "jewellery"
-      ? pathParts[1] || ""
-      : pathParts[0] || "";
+    return () => {
+      isMounted = false;
+    };
+  }, [currentCategory, currentMetal, searchQuery, currentSort]);
 
-  const isAllProducts =
-    location.pathname === "/jewellery" ||
-    location.pathname === "/jewellery/";
+  const updateFilter = (key, value) => {
+    const params = new URLSearchParams(searchParams);
+    if (value && value !== 'All' && value !== 'All Metals') {
+      params.set(key, value);
+    } else {
+      params.delete(key);
+    }
+    setSearchParams(params);
+  };
 
-  const title = isAllProducts
-    ? "All Jewellery"
-    : categoryNames[selectedCategory] || "Products";
-
-  const filteredProducts = isAllProducts
-    ? products
-    : products.filter(
-        (product) =>
-          product.category.toLowerCase() ===
-          selectedCategory.toLowerCase()
-      );
+  const clearFilters = () => {
+    setSearchParams({});
+  };
 
   return (
-    <main className="product-list-page">
-      <div className="product-list-breadcrumb">
-        <Link to="/">Home</Link>
-        <span>/</span>
-        <Link to="/jewellery">Jewellery</Link>
+    <div className="min-h-screen bg-[#FBF9F7] py-8">
+      <div className="container-fluid">
+        
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-6">
+          <Link to="/" className="hover:text-bluestone-navy">Home</Link>
+          <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
+          <Link to="/jewellery" className="hover:text-bluestone-navy">Jewellery</Link>
+          {currentCategory !== 'All' && (
+            <>
+              <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
+              <span className="font-semibold text-gray-800">{currentCategory}</span>
+            </>
+          )}
+          {searchQuery && (
+            <>
+              <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
+              <span className="font-semibold text-gray-800">Search: "{searchQuery}"</span>
+            </>
+          )}
+        </div>
 
-        {!isAllProducts && (
-          <>
-            <span>/</span>
-            <span>{title}</span>
-          </>
-        )}
-      </div>
+        {/* Page Title & Sort Row */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-gray-200 gap-4">
+          <div>
+            <h1 className="font-serif text-2xl sm:text-3xl font-bold text-bluestone-navy">
+              {searchQuery ? `Search Results for "${searchQuery}"` : `${currentCategory} Designs`}
+            </h1>
+            <p className="text-xs text-gray-500 mt-1">
+              Showing {products.length} certified fine jewellery designs
+            </p>
+          </div>
 
-      <div className="product-list-heading">
-        <h1>{title}</h1>
-        <p>
-          {filteredProducts.length}{" "}
-          {filteredProducts.length === 1
-            ? "product"
-            : "products"}
-        </p>
-      </div>
-
-      {filteredProducts.length > 0 ? (
-        <div className="product-list-grid">
-          {filteredProducts.map((product) => (
-            <article
-              className="product-card"
-              key={product.id}
+          <div className="flex items-center gap-3">
+            {/* Mobile Filter Button */}
+            <button
+              onClick={() => setIsMobileFilterOpen(true)}
+              className="lg:hidden flex items-center gap-2 bg-white border border-gray-300 px-4 py-2 rounded-xl text-xs font-semibold text-gray-800 shadow-xs"
             >
-              <div className="product-card-image">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  loading="lazy"
-                  onError={(event) => {
-                    event.currentTarget.style.display = "none";
-                  }}
-                />
-              </div>
+              <Filter className="w-4 h-4" />
+              <span>Filters</span>
+            </button>
 
-              <div className="product-card-info">
-                <h3>{product.name}</h3>
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-2 bg-white border border-gray-300 px-3 py-2 rounded-xl text-xs font-semibold text-gray-800 shadow-xs">
+              <ArrowUpDown className="w-3.5 h-3.5 text-gray-500" />
+              <span className="text-gray-500">Sort By:</span>
+              <select
+                value={currentSort}
+                onChange={(e) => updateFilter('sort', e.target.value)}
+                className="bg-transparent text-xs font-bold text-bluestone-navy focus:outline-none cursor-pointer"
+              >
+                <option value="popular">Popularity</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-                <p className="product-price">
-                  ₹{product.price.toLocaleString("en-IN")}
-                </p>
-
+        {/* Layout: Sidebar + Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
+          
+          {/* Desktop Filter Sidebar */}
+          <aside className="hidden lg:block space-y-6 bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs h-fit sticky top-24">
+            <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+              <span className="font-serif font-bold text-sm text-bluestone-navy flex items-center gap-2">
+                <SlidersHorizontal className="w-4 h-4 text-bluestone-gold" />
+                Refine Selection
+              </span>
+              {(currentCategory !== 'All' || currentMetal !== 'All Metals' || searchQuery) && (
                 <button
-                  type="button"
-                  className="product-view-button"
-                  onClick={() =>
-                    window.alert(
-                      `${product.name}\nPrice: ₹${product.price.toLocaleString("en-IN")}`
-                    )
-                  }
+                  onClick={clearFilters}
+                  className="text-xs font-semibold text-bluestone-coral hover:underline"
                 >
-                  View Product
+                  Clear All
+                </button>
+              )}
+            </div>
+
+            {/* Category Filter */}
+            <div>
+              <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">
+                Categories
+              </h4>
+              <div className="space-y-1.5">
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => updateFilter('category', cat)}
+                    className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between ${
+                      currentCategory.toLowerCase() === cat.toLowerCase()
+                        ? 'bg-[#011E38] text-white font-bold'
+                        : 'text-gray-600 hover:bg-gray-100'
+                    }`}
+                  >
+                    <span>{cat}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Metal Filter */}
+            <div className="pt-4 border-t border-gray-100">
+              <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">
+                Precious Metals
+              </h4>
+              <div className="space-y-1.5">
+                {METALS.map((metal) => (
+                  <button
+                    key={metal}
+                    onClick={() => updateFilter('metal', metal)}
+                    className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between ${
+                      currentMetal.toLowerCase() === metal.toLowerCase()
+                        ? 'bg-[#011E38] text-white font-bold'
+                        : 'text-gray-600 hover:bg-gray-100'
+                    }`}
+                  >
+                    <span>{metal}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
+
+          {/* Product Cards Grid Area */}
+          <main className="lg:col-span-3">
+            {loading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-80 rounded-2xl bg-white border border-gray-200 animate-pulse p-4 flex flex-col justify-between">
+                    <div className="w-full aspect-square bg-gray-100 rounded-xl" />
+                    <div className="space-y-2 mt-4">
+                      <div className="h-4 bg-gray-100 rounded w-3/4" />
+                      <div className="h-3 bg-gray-100 rounded w-1/2" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : products.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {products.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-20 bg-white rounded-2xl border border-gray-200 p-8 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-bluestone-gold mx-auto">
+                  <Filter className="w-8 h-8" />
+                </div>
+                <h3 className="font-serif text-xl font-bold text-gray-800">No matching jewellery found</h3>
+                <p className="text-xs text-gray-500 max-w-sm mx-auto">
+                  Try adjusting your filter criteria or search query to explore other designs.
+                </p>
+                <button
+                  onClick={clearFilters}
+                  className="bg-bluestone-navy text-white text-xs font-semibold px-6 py-2.5 rounded-xl shadow"
+                >
+                  Reset All Filters
                 </button>
               </div>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div className="product-empty">
-          <h2>No products found</h2>
-          <p>
-            No products are available in the {title} category yet.
-          </p>
+            )}
+          </main>
 
-          <Link to="/jewellery">
-            View all jewellery
-          </Link>
+        </div>
+
+      </div>
+
+      {/* Mobile Filter Drawer */}
+      {isMobileFilterOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs"
+            onClick={() => setIsMobileFilterOpen(false)}
+          />
+          <div className="relative w-4/5 max-w-xs bg-white h-full shadow-2xl p-6 overflow-y-auto z-10 animate-in slide-in-from-left">
+            <div className="flex items-center justify-between pb-4 border-b border-gray-200 mb-6">
+              <span className="font-serif font-bold text-base text-bluestone-navy">Filters</span>
+              <button onClick={() => setIsMobileFilterOpen(false)}>
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-xs font-bold text-gray-800 uppercase mb-2">Category</h4>
+                <div className="space-y-1">
+                  {CATEGORIES.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => {
+                        updateFilter('category', cat);
+                        setIsMobileFilterOpen(false);
+                      }}
+                      className="block w-full text-left py-1.5 text-xs text-gray-700"
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-gray-100">
+                <h4 className="text-xs font-bold text-gray-800 uppercase mb-2">Metal</h4>
+                <div className="space-y-1">
+                  {METALS.map((metal) => (
+                    <button
+                      key={metal}
+                      onClick={() => {
+                        updateFilter('metal', metal);
+                        setIsMobileFilterOpen(false);
+                      }}
+                      className="block w-full text-left py-1.5 text-xs text-gray-700"
+                    >
+                      {metal}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }

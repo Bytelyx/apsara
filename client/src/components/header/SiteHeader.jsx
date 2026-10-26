@@ -60,6 +60,7 @@ function BrandLogo({ compact = false }) {
         }`}
       >
         APSARA
+
         {!compact && (
           <span className="mt-0.5 block text-[8px] font-medium tracking-[0.34em] text-[#A88745] md:text-[9px]">
             FINE JEWELLERY
@@ -125,12 +126,14 @@ export default function SiteHeader() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 80);
+      setIsSticky(window.scrollY >= 74);
     };
 
     window.addEventListener('scroll', handleScroll, {
       passive: true,
     });
+
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -160,12 +163,11 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="relative z-40 w-full overflow-visible bg-white shadow-sm">
-      {/* Compact Desktop Header */}
+    <header className="relative z-40 hidden w-full bg-white shadow-sm lg:block">
+      {/* Desktop Header */}
       <div className="hdr-desktop border-b border-gray-200/70 bg-white">
         <div className="container-fluid px-4">
           <div className="flex h-[74px] items-center justify-between gap-3">
-            {/* Brand Logo */}
             <BrandLogo />
 
             {/* Search Bar */}
@@ -183,11 +185,11 @@ export default function SiteHeader() {
 
               <span className="mx-1 h-7 w-px bg-gray-200" />
 
-              <HeaderAction
+              {/* <HeaderAction
                 to="/stores"
                 icon={MapPin}
                 label="Find a Store"
-              />
+              /> */}
 
               <span className="mx-1 h-7 w-px bg-gray-200" />
 
@@ -209,6 +211,7 @@ export default function SiteHeader() {
 
               <span className="mx-1 h-7 w-px bg-gray-200" />
 
+              {/* Profile */}
               <button
                 type="button"
                 onClick={() => openAuth('login')}
@@ -225,7 +228,7 @@ export default function SiteHeader() {
               </button>
 
               {/* More Menu */}
-              <div className="relative">
+              {/* <div className="relative">
                 <button
                   type="button"
                   onClick={() =>
@@ -286,16 +289,26 @@ export default function SiteHeader() {
                     </a>
                   </div>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
 
+      {/* Reserve Space When Navigation Is Fixed */}
+      {isSticky && (
+        <div
+          className="hidden h-[52px] lg:block"
+          aria-hidden="true"
+        />
+      )}
+
       {/* Desktop Navigation */}
       <nav
-        className={`relative z-40 w-full ${
-          isSticky ? 'sticky top-0 shadow-lg' : ''
+        className={`z-50 w-full ${
+          isSticky
+            ? 'fixed left-0 top-0 shadow-lg'
+            : 'relative'
         }`}
         style={{ backgroundColor: NAVY }}
         onMouseLeave={handleMenuLeave}
@@ -322,7 +335,9 @@ export default function SiteHeader() {
 
                     <ChevronDown
                       className={`h-3 w-3 transition-transform ${
-                        activeMenu === item.label ? 'rotate-180' : ''
+                        activeMenu === item.label
+                          ? 'rotate-180'
+                          : ''
                       }`}
                     />
                   </Link>
@@ -350,7 +365,9 @@ export default function SiteHeader() {
 
                     <ChevronDown
                       className={`h-3 w-3 transition-transform ${
-                        activeMenu === item.label ? 'rotate-180' : ''
+                        activeMenu === item.label
+                          ? 'rotate-180'
+                          : ''
                       }`}
                     />
                   </Link>
@@ -360,6 +377,7 @@ export default function SiteHeader() {
           </div>
         </div>
 
+        {/* Mega Menu */}
         <MegaMenu
           activeItem={activeMenu}
           onClose={() => setActiveMenu(null)}

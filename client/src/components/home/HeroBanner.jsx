@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import rings from '../../assets/Rings.png';
 import earings from '../../assets/earings.png';
 import pendants from '../../assets/pendants.png';
@@ -116,6 +117,10 @@ const categories = [
   },
 ];
 
+const categoryClasses = categories.map(
+  (category) => category.className
+);
+
 export default function HeroBanner() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
@@ -128,25 +133,35 @@ export default function HeroBanner() {
         }
 
         .bluestone-home {
+          position: relative;
+          display: block;
           width: 100%;
-          overflow: hidden;
-          background: #f3e0dc;
+          max-width: 100%;
+          min-width: 0;
+          margin: 0;
+          padding: 0;
           color: #fff;
+          background: #f3e0dc;
           font-family: Georgia, 'Times New Roman', serif;
+          overflow-x: clip;
+          isolation: isolate;
         }
 
-        /* =========================
-           HERO VIDEO
-        ========================= */
+        /* HERO VIDEO */
 
-        .hero-video-section {
+        .bluestone-home .hero-video-section {
           position: relative;
+          display: block;
           width: 100%;
+          max-width: 100%;
+          min-width: 0;
+          margin: 0;
+          padding: 0;
           overflow: hidden;
           background: #7d3038;
         }
 
-        .hero-video-frame {
+        .bluestone-home .hero-video-frame {
           position: relative;
           width: 100%;
           max-width: 1920px;
@@ -157,16 +172,17 @@ export default function HeroBanner() {
           background: #7d3038;
         }
 
-        .hero-video {
+        .bluestone-home .hero-video {
           display: block;
           width: 100%;
           height: 100%;
+          max-width: 100%;
           object-fit: cover;
           object-position: center;
           transition: opacity 700ms ease;
         }
 
-        .hero-video-overlay {
+        .bluestone-home .hero-video-overlay {
           position: absolute;
           inset: 0;
           pointer-events: none;
@@ -179,15 +195,16 @@ export default function HeroBanner() {
           );
         }
 
-        /* =========================
-           SHOP BY CATEGORY SECTION
-        ========================= */
+        /* CATEGORY SECTION */
 
-        .shop-category-section {
+        .bluestone-home .shop-category-section {
           position: relative;
+          display: block;
           width: 100%;
-          margin-top: -1px;
-          padding: 4px 0 32px;
+          max-width: 100%;
+          min-width: 0;
+          margin: -1px 0 0;
+          padding: 12px 0 32px;
           background: linear-gradient(
             180deg,
             #7d3038 0%,
@@ -197,9 +214,12 @@ export default function HeroBanner() {
           );
         }
 
-        .shop-category-title {
+        .bluestone-home .shop-category-title {
+          display: block;
+          width: 100%;
+          max-width: 100%;
           margin: 0 auto 24px;
-          padding: 0 20px;
+          padding: 0 12px;
           color: #fff;
           font-family: Georgia, 'Times New Roman', serif;
           font-size: clamp(30px, 3vw, 42px);
@@ -207,30 +227,29 @@ export default function HeroBanner() {
           font-weight: 500;
           line-height: 1.2;
           text-align: center;
+          overflow-wrap: anywhere;
         }
 
-        /* =========================
-           CATEGORY GRID
-        ========================= */
+        /* DESKTOP GRID */
 
-        .shop-category-grid {
+        .bluestone-home .shop-category-grid {
           display: grid;
           width: 86%;
           max-width: 1600px;
+          min-width: 0;
           margin: 0 auto;
+          padding: 0;
           grid-template-columns: repeat(5, minmax(0, 1fr));
           grid-auto-rows: clamp(180px, 18vw, 294px);
           grid-auto-flow: row;
           gap: 6px;
         }
 
-        /* =========================
-           CATEGORY CARD
-        ========================= */
-
-        .shop-category-card {
+        .bluestone-home .shop-category-card {
           position: relative;
           display: block;
+          width: 100%;
+          height: 100%;
           min-width: 0;
           min-height: 0;
           overflow: hidden;
@@ -243,85 +262,60 @@ export default function HeroBanner() {
           box-shadow: 0 7px 15px rgba(0, 0, 0, 0.22);
           text-decoration: none;
           isolation: isolate;
-          transform: scale(1);
           z-index: 1;
-
           transition:
             transform 450ms ease,
             box-shadow 450ms ease;
         }
 
-        /* Full card zoom */
-        .shop-category-card:hover {
-          transform: scale(1.035);
+        .bluestone-home .shop-category-card:hover {
+          transform: scale(1.025);
           box-shadow: 0 14px 28px rgba(65, 20, 27, 0.35);
           z-index: 5;
         }
 
-        /* Keyboard accessibility */
-        .shop-category-card:focus-visible {
+        .bluestone-home .shop-category-card:focus-visible {
           outline: 3px solid #fff;
           outline-offset: 3px;
           z-index: 6;
         }
 
-        /* =========================
-           CATEGORY IMAGE
-        ========================= */
-
-        .shop-category-image {
+        .bluestone-home .shop-category-image {
           position: absolute;
           inset: 0;
           display: block;
           width: 100%;
           height: 100%;
+          max-width: 100%;
           object-fit: cover;
           object-position: center;
-
           transition:
             transform 600ms cubic-bezier(0.2, 0.7, 0.3, 1),
             filter 450ms ease;
         }
 
-        .shop-category-card:hover .shop-category-image {
-          transform: scale(1.08);
-          filter: brightness(0.88) saturate(1.08);
-        }
-
-        /* =========================
-           GRADIENT OVERLAY
-        ========================= */
-
-        .shop-category-card::after {
+        .bluestone-home .shop-category-card::after {
           position: absolute;
           inset: 0;
           z-index: 1;
           background: linear-gradient(
             to top,
             rgba(55, 15, 24, 0.82) 0%,
-            rgba(125, 48, 56, 0.30) 35%,
+            rgba(125, 48, 56, 0.3) 35%,
             rgba(212, 166, 166, 0.05) 70%,
             transparent 100%
           );
           content: '';
           pointer-events: none;
-          transition: background 450ms ease;
         }
 
-        .shop-category-card:hover::after {
-          background: linear-gradient(
-            135deg,
-            rgba(125, 48, 56, 0.30) 0%,
-            rgba(125, 48, 56, 0.05) 35%,
-            rgba(55, 15, 24, 0.88) 100%
-          );
+        .bluestone-home .shop-category-card:hover
+          .shop-category-image {
+          transform: scale(1.07);
+          filter: brightness(0.88) saturate(1.08);
         }
 
-        /* =========================
-           CATEGORY TITLE
-        ========================= */
-
-        .shop-category-name {
+        .bluestone-home .shop-category-name {
           position: absolute;
           right: 16px;
           bottom: 17px;
@@ -333,235 +327,438 @@ export default function HeroBanner() {
           font-size: clamp(17px, 1.35vw, 24px);
           font-weight: 600;
           line-height: 1.2;
-          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
-
-          transition:
-            transform 450ms ease,
-            text-shadow 450ms ease;
+          overflow-wrap: anywhere;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+          transition: transform 450ms ease;
         }
 
-        .shop-category-card:hover .shop-category-name {
+        .bluestone-home .shop-category-card:hover
+          .shop-category-name {
           transform: translateY(-4px);
-          text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
         }
 
-        /* =========================
-           DESKTOP CATEGORY POSITIONS
-        ========================= */
+        /* DESKTOP CATEGORY POSITIONS */
 
-        .cat-rings {
+        .bluestone-home .cat-rings {
           grid-column: 1;
           grid-row: 1 / span 2;
         }
 
-        .cat-earrings {
+        .bluestone-home .cat-earrings {
           grid-column: 2 / span 2;
           grid-row: 1;
         }
 
-        .cat-pendants {
+        .bluestone-home .cat-pendants {
           grid-column: 4;
           grid-row: 1;
         }
 
-        .cat-chains {
+        .bluestone-home .cat-chains {
           grid-column: 5;
           grid-row: 1;
         }
 
-        .cat-water {
+        .bluestone-home .cat-water {
           grid-column: 2;
           grid-row: 2;
         }
 
-        .cat-necklaces {
+        .bluestone-home .cat-necklaces {
           grid-column: 3 / span 2;
           grid-row: 2 / span 2;
         }
 
-        .cat-coins {
+        .bluestone-home .cat-coins {
           grid-column: 5;
           grid-row: 2;
         }
 
-        .cat-bangles {
+        .bluestone-home .cat-bangles {
           grid-column: 1 / span 2;
           grid-row: 3;
         }
 
-        .cat-kadas {
+        .bluestone-home .cat-kadas {
           grid-column: 5;
           grid-row: 3;
         }
 
-        .cat-anklets {
+        .bluestone-home .cat-anklets {
           grid-column: 1;
           grid-row: 4;
         }
 
-        .cat-kids {
+        .bluestone-home .cat-kids {
           grid-column: 2;
           grid-row: 4;
         }
 
-        .cat-nosepins {
+        .bluestone-home .cat-nosepins {
           grid-column: 3;
           grid-row: 4;
         }
 
-        .cat-mangalsutras {
+        .bluestone-home .cat-mangalsutras {
           grid-column: 1;
           grid-row: 5;
         }
 
-        .cat-bracelets {
+        .bluestone-home .cat-bracelets {
           grid-column: 2;
           grid-row: 5;
         }
 
-        .cat-mens {
+        .bluestone-home .cat-mens {
           grid-column: 3;
           grid-row: 5;
         }
 
-        .cat-solitaires {
+        .bluestone-home .cat-solitaires {
           grid-column: 4 / span 2;
           grid-row: 4 / span 2;
         }
 
-        /* =========================
-           TABLET
-        ========================= */
+        /* TABLET */
 
         @media (min-width: 601px) and (max-width: 1000px) {
-          .hero-video-frame {
+          .bluestone-home .hero-video-frame {
             height: auto;
-            min-height: 0;
             aspect-ratio: 16 / 9;
           }
 
-          .shop-category-grid {
-            width: 92%;
-            grid-auto-rows: clamp(130px, 20vw, 205px);
-            gap: 5px;
-          }
-
-          .shop-category-card {
-            border-radius: 13px;
-          }
-
-          .shop-category-name {
-            right: 10px;
-            bottom: 12px;
-            left: 10px;
-            font-size: 17px;
-          }
-
-          .shop-category-card:hover {
-            transform: scale(1.02);
-          }
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 600px) {
-          .hero-video-frame {
-            width: 100%;
-            height: auto;
-            min-height: 0;
-            aspect-ratio: 4 / 3;
-          }
-
-          .hero-video {
-            object-position: center;
-          }
-
-          .shop-category-section {
-            padding: 8px 0 24px;
-            background: linear-gradient(
-              180deg,
-              #7d3038 0%,
-              #d4a6a6 30%,
-              #f3e0dc 100%
-            );
-          }
-
-          .shop-category-title {
-            margin-bottom: 18px;
-            font-size: 29px;
-          }
-
-          .shop-category-grid {
+          .bluestone-home .shop-category-grid {
             width: 94%;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            grid-auto-rows: 150px;
-            gap: 8px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-auto-rows: clamp(145px, 23vw, 220px);
+            gap: 6px;
           }
 
-          .shop-category-card {
+          .bluestone-home .shop-category-card {
             grid-column: auto;
             grid-row: auto;
             border-radius: 12px;
           }
 
-          .shop-category-name {
+          .bluestone-home .cat-rings,
+          .bluestone-home .cat-necklaces,
+          .bluestone-home .cat-solitaires {
+            grid-column: span 2;
+            grid-row: span 2;
+          }
+
+          .bluestone-home .cat-earrings,
+          .bluestone-home .cat-bangles {
+            grid-column: span 2;
+          }
+
+          .bluestone-home .shop-category-name {
             right: 10px;
-            bottom: 11px;
+            bottom: 12px;
             left: 10px;
-            font-size: 17px;
-          }
-
-          .cat-rings {
-            grid-column: auto;
-            grid-row: span 2;
-          }
-
-          .cat-earrings,
-          .cat-bangles {
-            grid-column: span 2;
-            grid-row: auto;
-          }
-
-          .cat-necklaces {
-            grid-column: span 2;
-            grid-row: span 2;
-          }
-
-          .cat-solitaires {
-            grid-column: span 2;
-            grid-row: span 2;
-          }
-
-          /* Avoid excessive zoom on narrow screens */
-          .shop-category-card:hover {
-            transform: scale(1.015);
+            font-size: clamp(15px, 2vw, 19px);
           }
         }
 
-        /* Reduced motion accessibility */
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+          .bluestone-home {
+            position: relative;
+            left: auto;
+            right: auto;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            transform: none;
+            overflow-x: clip;
+          }
+
+          .bluestone-home .hero-video-section {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+          }
+
+          .bluestone-home .hero-video-frame {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            min-height: 0;
+            aspect-ratio: 4 / 3;
+            margin: 0;
+            overflow: hidden;
+          }
+
+          .bluestone-home .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+
+          .bluestone-home .shop-category-section {
+            position: relative;
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin: 0;
+            padding: 14px 0 24px;
+            overflow: hidden;
+            background: linear-gradient(
+              180deg,
+              #7d3038 0%,
+              #b77b80 35%,
+              #f3e0dc 100%
+            );
+          }
+
+          .bluestone-home .shop-category-title {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto 14px;
+            padding: 0 8px;
+            font-size: clamp(22px, 6vw, 28px);
+            line-height: 1.25;
+            text-align: center;
+            overflow-wrap: normal;
+          }
+
+          .bluestone-home .shop-category-grid {
+            display: grid;
+            width: calc(100% - 16px);
+            max-width: 480px;
+            min-width: 0;
+            margin: 0 auto;
+            padding: 0;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-rows: repeat(9, clamp(85px, 24vw, 112px));
+            grid-auto-flow: row;
+            gap: 4px;
+          }
+
+          .bluestone-home .shop-category-card {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-width: 0;
+            min-height: 0;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            transform: none;
+          }
+
+          /* Reset all desktop grid positions */
+
+          ${categoryClasses.map(
+            (className) => `
+              .bluestone-home .${className} {
+                grid-column: auto;
+                grid-row: auto;
+              }
+            `
+          ).join('')}
+
+          /* First two rows */
+
+          .bluestone-home .cat-rings {
+            grid-column: 1;
+            grid-row: 1 / 3;
+          }
+
+          .bluestone-home .cat-earrings {
+            grid-column: 2 / 4;
+            grid-row: 1;
+          }
+
+          .bluestone-home .cat-pendants {
+            grid-column: 2;
+            grid-row: 2;
+          }
+
+          .bluestone-home .cat-chains {
+            grid-column: 3;
+            grid-row: 2;
+          }
+
+          /* Third row */
+
+          .bluestone-home .cat-bracelets {
+            grid-column: 1;
+            grid-row: 3;
+          }
+
+          .bluestone-home .cat-bangles {
+            grid-column: 2 / 4;
+            grid-row: 3;
+          }
+
+          /* Large necklace card */
+
+          .bluestone-home .cat-necklaces {
+            grid-column: 1 / 3;
+            grid-row: 4 / 6;
+          }
+
+          .bluestone-home .cat-kadas {
+            grid-column: 3;
+            grid-row: 4;
+          }
+
+          .bluestone-home .cat-water {
+            grid-column: 3;
+            grid-row: 5;
+          }
+
+          /* Sixth row */
+
+          .bluestone-home .cat-coins {
+            grid-column: 1;
+            grid-row: 6;
+          }
+
+          .bluestone-home .cat-anklets {
+            grid-column: 2;
+            grid-row: 6;
+          }
+
+          .bluestone-home .cat-kids {
+            grid-column: 3;
+            grid-row: 6;
+          }
+
+          /* Seventh row */
+
+          .bluestone-home .cat-nosepins {
+            grid-column: 1;
+            grid-row: 7;
+          }
+
+          .bluestone-home .cat-mangalsutras {
+            grid-column: 2;
+            grid-row: 7;
+          }
+
+          .bluestone-home .cat-mens {
+            grid-column: 3;
+            grid-row: 7;
+          }
+
+          /* Final large card */
+
+          .bluestone-home .cat-solitaires {
+            grid-column: 1 / 4;
+            grid-row: 8 / 10;
+          }
+
+          .bluestone-home .shop-category-image {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+
+          .bluestone-home .shop-category-card::after {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            content: '';
+            pointer-events: none;
+            background: linear-gradient(
+              to top,
+              rgba(55, 15, 24, 0.78) 0%,
+              rgba(125, 48, 56, 0.18) 45%,
+              transparent 100%
+            );
+          }
+
+          .bluestone-home .shop-category-name {
+            position: absolute;
+            right: 5px;
+            bottom: 6px;
+            left: 5px;
+            z-index: 2;
+            margin: 0;
+            font-size: clamp(10px, 3vw, 14px);
+            line-height: 1.2;
+            overflow-wrap: anywhere;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+          }
+
+          .bluestone-home .shop-category-card:hover {
+            transform: none;
+          }
+
+          .bluestone-home .shop-category-card:hover
+            .shop-category-image {
+            transform: none;
+            filter: none;
+          }
+
+          .bluestone-home .shop-category-card:hover
+            .shop-category-name {
+            transform: none;
+          }
+        }
+
+        /* SMALL PHONES */
+
+        @media (max-width: 360px) {
+          .bluestone-home .shop-category-grid {
+            width: calc(100% - 12px);
+            grid-template-rows: repeat(9, 85px);
+            gap: 3px;
+          }
+
+          .bluestone-home .shop-category-title {
+            font-size: 23px;
+          }
+
+          .bluestone-home .shop-category-name {
+            font-size: 10px;
+          }
+        }
+
+        /* REDUCED MOTION */
+
         @media (prefers-reduced-motion: reduce) {
-          .shop-category-card,
-          .shop-category-image,
-          .shop-category-card::after,
-          .shop-category-name,
-          .hero-video {
-            transition: none;
+          .bluestone-home .hero-video,
+          .bluestone-home .shop-category-card,
+          .bluestone-home .shop-category-image,
+          .bluestone-home .shop-category-name {
+            transition: none !important;
           }
 
-          .shop-category-card:hover {
-            transform: none;
-          }
-
-          .shop-category-card:hover .shop-category-image {
-            transform: none;
+          .bluestone-home .shop-category-card:hover,
+          .bluestone-home .shop-category-card:hover
+            .shop-category-image,
+          .bluestone-home .shop-category-card:hover
+            .shop-category-name {
+            transform: none !important;
           }
         }
       `}</style>
 
       {/* HERO VIDEO */}
-      <section className="hero-video-section">
+
+      <section
+        className="hero-video-section"
+        aria-label="Jewellery collection banner"
+      >
         <div className="hero-video-frame">
           <video
             className="hero-video"
@@ -580,10 +777,12 @@ export default function HeroBanner() {
               src="https://kinvid1.bluestone.com/output/mp4/VL_VIDEO_1.mp4/VL_VIDEO_1.mp4"
               type="video/mp4"
             />
+
             <source
               src="/videos/VL_VIDEO_1.mp4"
               type="video/mp4"
             />
+
             Your browser does not support the video tag.
           </video>
 
@@ -592,6 +791,7 @@ export default function HeroBanner() {
       </section>
 
       {/* SHOP BY CATEGORY */}
+
       <section
         className="shop-category-section"
         aria-labelledby="shop-category-heading"

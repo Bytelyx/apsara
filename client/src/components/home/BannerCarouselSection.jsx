@@ -69,20 +69,25 @@ export default function BannerCarouselSection() {
           padding: 24px 0;
           background: #fff;
           overflow: hidden;
+          box-sizing: border-box;
         }
 
         .banner-carousel {
-          position: relative;
           width: 100%;
+          position: relative;
+          overflow: hidden;
         }
 
         .banner-carousel-viewport {
           width: 100%;
           overflow: hidden;
+          padding: 0 16px;
+          box-sizing: border-box;
         }
 
         .banner-carousel-track {
-          --card-width: min(49vw, 800px);
+          --side-space: 16px;
+          --card-width: 46vw;
           --card-gap: 8px;
 
           display: flex;
@@ -92,7 +97,7 @@ export default function BannerCarouselSection() {
 
           transform: translateX(
             calc(
-              50vw - var(--card-width) / 2 -
+              var(--side-space) -
               var(--current-index) *
               (var(--card-width) + var(--card-gap))
             )
@@ -111,6 +116,7 @@ export default function BannerCarouselSection() {
           border-radius: 16px;
           background: #f5f5f5;
           text-decoration: none;
+          box-sizing: border-box;
         }
 
         .banner-carousel-card img {
@@ -130,23 +136,18 @@ export default function BannerCarouselSection() {
           position: absolute;
           top: 50%;
           z-index: 5;
-
           display: flex;
           align-items: center;
           justify-content: center;
-
           width: 42px;
           height: 42px;
           padding: 0;
           border: 1px solid rgba(255, 255, 255, 0.7);
           border-radius: 50%;
-
           color: #fff;
           background: rgba(255, 255, 255, 0.4);
           backdrop-filter: blur(5px);
-
           cursor: pointer;
-          opacity: 1;
           transform: translateY(-50%);
           transition: background 150ms ease;
         }
@@ -169,8 +170,13 @@ export default function BannerCarouselSection() {
             padding: 14px 0;
           }
 
+          .banner-carousel-viewport {
+            padding: 0 12px;
+          }
+
           .banner-carousel-track {
-            --card-width: 84vw;
+            --side-space: 12px;
+            --card-width: calc(100vw - 24px);
             --card-gap: 8px;
           }
 
@@ -186,11 +192,11 @@ export default function BannerCarouselSection() {
           }
 
           .banner-carousel-prev {
-            left: 8px;
+            left: 16px;
           }
 
           .banner-carousel-next {
-            right: 8px;
+            right: 16px;
           }
         }
 

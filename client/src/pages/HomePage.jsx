@@ -2,19 +2,21 @@ import React from 'react';
 import HeroBanner from '../components/home/HeroBanner';
 import BannerCarouselSection from '../components/home/BannerCarouselSection';
 import FeaturedProductsSection from '../components/home/FeaturedProductsSection';
-import CollectionSection from '../components/home/CollectionSection';
-import VideoSection from '../components/home/VideoSection';
-import TrendingSection from '../components/home/TrendingSection';
+// import CollectionSection from '../components/home/CollectionSection';
+// import VideoSection from '../components/home/VideoSection';
+// import TrendingSection from '../components/home/TrendingSection';
 import ReelsSection from '../components/home/ReelsSection';
-import AlchemyMaterialsSection from '../components/home/AlchemyMaterialsSection';
-import DesignLedSection from '../components/home/DesignLedSection';
-import RainforestSection from '../components/home/RainforestSection';
-import StoreSection from '../components/home/StoreSection';
+// import AlchemyMaterialsSection from '../components/home/AlchemyMaterialsSection';
+// import DesignLedSection from '../components/home/DesignLedSection';
+// import RainforestSection from '../components/home/RainforestSection';
+// import StoreSection from '../components/home/StoreSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
-import EditorialSection from '../components/home/EditorialSection';
+// import EditorialSection from '../components/home/EditorialSection';
 import BlueStonePromiseSection from '../components/home/BlueStonePromiseSection';
-import NewsSection from '../components/home/NewsSection';
-import SeoContentSection from '../components/home/SeoContentSection';
+// import NewsSection from '../components/home/NewsSection';
+// import SeoContentSection from '../components/home/SeoContentSection';
+import HandPickedUpSection from '../components/home/HandPickedUpSection';
+import RecommendedForYou from '../components/home/RecommendedForYou';
 
 export default function HomePage() {
   return (
@@ -25,47 +27,53 @@ export default function HomePage() {
       {/* 4. Banner Carousel */}
       <BannerCarouselSection />
 
+      {/* Hand PickUp */}
+      <HandPickedUpSection />
+
+      {/* Recommended For You */}
+      <RecommendedForYou />
+
       {/* 5. Featured Curated Jewellery */}
       <FeaturedProductsSection />
 
       {/* 6. Designer Collections */}
-      <CollectionSection />
+      {/* <CollectionSection /> */}
 
       {/* 7. Craftsmanship Video Showcase */}
-      <VideoSection />
+      {/* <VideoSection /> */}
 
       {/* 8. Trendspotting Direction */}
-      <TrendingSection />
+      {/* <TrendingSection /> */}
 
       {/* 9. Watch & Shop Reels */}
       <ReelsSection />
 
       {/* 10. Alchemy of Materials */}
-      <AlchemyMaterialsSection />
+      {/* <AlchemyMaterialsSection /> */}
 
       {/* 11. Design-Led Philosophy */}
-      <DesignLedSection />
+      {/* <DesignLedSection /> */}
 
       {/* 12. Rainforest Theme Collection */}
-      <RainforestSection />
+      {/* <RainforestSection /> */}
 
       {/* 13. Omnichannel Stores Section */}
-      <StoreSection />
+      {/* <StoreSection /> */}
 
       {/* 14. Customer Testimonials */}
       <TestimonialsSection />
 
       {/* 15. Editorial Spotlight */}
-      <EditorialSection />
+      {/* <EditorialSection /> */}
 
       {/* 16. The BlueStone Promise */}
       <BlueStonePromiseSection />
 
       {/* 17. News & Media Coverage */}
-      <NewsSection />
+      {/* <NewsSection /> */}
 
       {/* 18. SEO & Knowledge Base Content */}
-      <SeoContentSection />
+      {/* <SeoContentSection /> */}
     </main>
   );
 }
