@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Send, ShieldCheck, Award, Heart, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowRight,
+  Instagram,
+  Facebook,
+  Youtube,
+  Mail,
+  Phone,
+  MapPin,
+  CheckCircle2,
+  Sparkles,
+} from 'lucide-react';
 
 export default function SiteFooter() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -8,162 +18,289 @@ export default function SiteFooter() {
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    if (newsletterEmail.trim()) {
-      setIsSubscribed(true);
-      setNewsletterEmail('');
-      setTimeout(() => setIsSubscribed(false), 5000);
-    }
+
+    if (!newsletterEmail.trim()) return;
+
+    setIsSubscribed(true);
+    setNewsletterEmail('');
   };
 
+  const footerLinks = [
+    {
+      title: 'Explore',
+      links: [
+        { label: 'Our Story', to: '/stores' },
+        { label: 'All Jewellery', to: '/jewellery' },
+        { label: 'Rings', to: '/jewellery/rings' },
+        { label: 'Earrings', to: '/jewellery/earrings' },
+        { label: 'Necklaces', to: '/jewellery/necklaces' },
+        { label: 'Store Locator', to: '/stores' },
+      ],
+    },
+    {
+      title: 'Customer Care',
+      links: [
+        { label: 'Contact Us', to: '/stores' },
+        { label: 'Track Your Order', to: '/cart' },
+        { label: 'Book an Appointment', to: '/stores' },
+        { label: 'Gold Savings Plan', to: '/goldmine' },
+        { label: 'Jewellery Care', to: '/jewellery' },
+        { label: 'FAQs & Support', to: '/stores' },
+      ],
+    },
+    {
+      title: 'Popular Collections',
+      links: [
+        { label: 'Gold Jewellery', to: '/jewellery' },
+        { label: 'Diamond Jewellery', to: '/jewellery' },
+        { label: 'Mangalsutras', to: '/jewellery/mangalsutras' },
+        { label: 'Bangles', to: '/jewellery/bangles' },
+        { label: 'Pendants', to: '/jewellery/pendants' },
+        { label: 'Solitaires', to: '/jewellery/solitaires' },
+      ],
+    },
+  ];
+
   return (
-    <footer className="bg-[#011E38] text-white pt-16 pb-8 border-t border-white/10">
-      <div className="container-fluid">
-        
-        {/* Newsletter & Club Row */}
-        <div className="p-8 rounded-2xl bg-white/5 border border-white/10 mb-14 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div className="max-w-xl text-center lg:text-left">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-bluestone-gold bg-white/10 px-2.5 py-1 rounded-full">
-              Join The BlueStone Club
-            </span>
-            <h3 className="font-serif text-2xl font-bold mt-2 text-white">
-              Be The First To Discover New Curations
-            </h3>
-            <p className="text-xs text-gray-300 mt-1">
-              Receive secret preview access, seasonal private sale invitations, and curated style edits.
-            </p>
-          </div>
+    <footer className="bg-[#101C2C] text-white">
+      {/* Newsletter */}
+      <div className="border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-7 md:py-9">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+            <div className="max-w-lg">
+              <div className="flex items-center gap-2 text-[#D8B779] mb-2">
+                <Sparkles size={14} strokeWidth={1.5} />
 
-          <div className="w-full lg:w-auto">
-            {isSubscribed ? (
-              <div className="flex items-center gap-2 bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 px-5 py-3 rounded-xl text-xs font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Thank you for subscribing! Welcome to the BlueStone family.</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-medium">
+                  A Little Something Special
+                </span>
               </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="flex max-w-md w-full gap-2">
-                <input
-                  type="email"
-                  required
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  placeholder="Enter your email address..."
-                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-gray-400 focus:outline-none focus:border-amber-400 flex-1 min-w-[240px]"
-                />
-                <button
-                  type="submit"
-                  className="bg-amber-400 hover:bg-amber-300 text-bluestone-navy font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition-colors flex items-center gap-1.5 flex-shrink-0"
+
+              <h2 className="font-serif text-2xl sm:text-3xl leading-tight">
+                Beautiful things,
+                <span className="text-[#D8B779] italic ml-2">
+                  delivered to you.
+                </span>
+              </h2>
+
+              <p className="text-xs sm:text-sm text-gray-400 mt-2 leading-5">
+                Discover new collections, timeless designs and exclusive
+                offers from Apsara Jewellery.
+              </p>
+            </div>
+
+            <div className="w-full lg:max-w-md">
+              {isSubscribed ? (
+                <div
+                  role="status"
+                  className="flex items-center gap-2 rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-3 text-xs text-emerald-200"
                 >
-                  <span>Subscribe</span>
-                  <Send className="w-3.5 h-3.5" />
-                </button>
-              </form>
-            )}
+                  <CheckCircle2 size={18} />
+                  <span>
+                    Thank you! You are on our mailing list.
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsSubscribed(false)}
+                    className="ml-auto underline"
+                  >
+                    Close
+                  </button>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleSubscribe}
+                  className="flex flex-col sm:flex-row gap-2"
+                >
+                  <label htmlFor="footer-email" className="sr-only">
+                    Email address
+                  </label>
+
+                  <input
+                    id="footer-email"
+                    type="email"
+                    required
+                    value={newsletterEmail}
+                    onChange={(e) =>
+                      setNewsletterEmail(e.target.value)
+                    }
+                    placeholder="Your email address"
+                    className="min-w-0 flex-1 rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-xs text-white placeholder:text-gray-500 outline-none transition-colors focus:border-[#D8B779]"
+                  />
+
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#D8B779] px-5 py-3 text-xs font-semibold text-[#101C2C] transition-colors hover:bg-[#E7CC98]"
+                  >
+                    Subscribe
+                    <ArrowRight size={14} />
+                  </button>
+                </form>
+              )}
+
+              <p className="mt-2 text-[10px] text-gray-500">
+                Exclusive updates, new arrivals and special offers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 py-8 md:py-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-x-5 gap-y-7 lg:gap-6">
+
+          {/* Brand */}
+          <div className="col-span-2 lg:col-span-2">
+            <Link to="/" aria-label="Apsara Jewellery home" className="inline-block">
+              <span className="font-serif text-3xl tracking-wide">
+                Apsara
+              </span>
+
+              <span className="block mt-0.5 text-[9px] uppercase tracking-[0.38em] text-[#D8B779]">
+                JEWELLERY
+              </span>
+            </Link>
+
+            <p className="mt-3 max-w-sm text-xs leading-6 text-gray-400">
+              Jewellery for every story, every celebration and every
+              beautiful moment. Find the piece that feels uniquely yours.
+            </p>
+
+            <div className="mt-4 space-y-2.5 text-xs text-gray-400">
+              <a
+                href="tel:18004190066"
+                className="flex items-center gap-2.5 transition-colors hover:text-[#D8B779]"
+              >
+                <Phone size={14} className="text-[#D8B779]" />
+                <span>1800-419-0066</span>
+              </a>
+
+              <a
+                href="mailto:cs@bluestone.com"
+                className="flex items-center gap-2.5 transition-colors hover:text-[#D8B779]"
+              >
+                <Mail size={14} className="text-[#D8B779]" />
+                <span>Customer Support</span>
+              </a>
+
+              <Link
+                to="/stores"
+                className="flex items-center gap-2.5 transition-colors hover:text-[#D8B779]"
+              >
+                <MapPin size={14} className="text-[#D8B779]" />
+                <span>Find a Store</span>
+              </Link>
+            </div>
+
+            {/* Social Icons */}
+            <div className="mt-5 flex items-center gap-2.5">
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-gray-300 transition-all hover:border-[#D8B779] hover:text-[#D8B779]"
+              >
+                <Instagram size={15} />
+              </a>
+
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-gray-300 transition-all hover:border-[#D8B779] hover:text-[#D8B779]"
+              >
+                <Facebook size={15} />
+              </a>
+
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-gray-300 transition-all hover:border-[#D8B779] hover:text-[#D8B779]"
+              >
+                <Youtube size={15} />
+              </a>
+            </div>
+          </div>
+
+          {/* Footer Link Columns */}
+          {footerLinks.map((section) => (
+            <div key={section.title}>
+              <h3 className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#D8B779]">
+                {section.title}
+              </h3>
+
+              <ul className="space-y-2.5">
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.to}
+                      className="text-xs leading-5 text-gray-400 transition-colors duration-200 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Brand Promise */}
+        <div className="mt-7 border-y border-white/10 py-3">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-center">
+            <span className="text-[9px] uppercase tracking-[0.13em] text-gray-400">
+              Crafted with care
+            </span>
+
+            <span className="hidden h-1 w-1 rounded-full bg-[#D8B779] sm:block" />
+
+            <span className="text-[9px] uppercase tracking-[0.13em] text-gray-400">
+              Made for your moments
+            </span>
+
+            <span className="hidden h-1 w-1 rounded-full bg-[#D8B779] sm:block" />
+
+            <span className="text-[9px] uppercase tracking-[0.13em] text-gray-400">
+              Designed to be treasured
+            </span>
           </div>
         </div>
 
-        {/* 4 Main Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12 border-b border-white/10 text-xs">
-          
-          {/* Col 1: About Us */}
-          <div className="space-y-3">
-            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider text-amber-300">
-              About BlueStone
-            </h4>
-            <ul className="space-y-2 text-gray-300">
-              <li><Link to="/stores" className="hover:text-white transition-colors">Our Story &amp; Heritage</Link></li>
-              <li><Link to="/stores" className="hover:text-white transition-colors">200+ Stores Nationwide</Link></li>
-              <li><Link to="/jewellery" className="hover:text-white transition-colors">Design Studio &amp; Artistry</Link></li>
-              <li><Link to="/goldmine" className="hover:text-white transition-colors">Leadership &amp; Investors</Link></li>
-              <li><Link to="/stores" className="hover:text-white transition-colors">Careers at BlueStone</Link></li>
-              <li><Link to="/jewellery" className="hover:text-white transition-colors">CSR &amp; Ethical Sourcing</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 2: The BlueStone Advantage */}
-          <div className="space-y-3">
-            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider text-amber-300">
-              BlueStone Advantage
-            </h4>
-            <ul className="space-y-2 text-gray-300">
-              <li><Link to="/goldmine" className="hover:text-white transition-colors">Gold Mine 10+1 Monthly Plan</Link></li>
-              <li><Link to="/stores" className="hover:text-white transition-colors">Try At Home Support</Link></li>
-              <li><Link to="/jewellery" className="hover:text-white transition-colors">100% Certified BIS Hallmark</Link></li>
-              <li><Link to="/jewellery" className="hover:text-white transition-colors">30-Day Money Back Guarantee</Link></li>
-              <li><Link to="/jewellery" className="hover:text-white transition-colors">Lifetime Exchange &amp; Buyback</Link></li>
-              <li><Link to="/stores" className="hover:text-white transition-colors">Old Gold Exchange with 0% Deduction</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Customer Care */}
-          <div className="space-y-3">
-            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider text-amber-300">
-              Customer Delight
-            </h4>
-            <ul className="space-y-2 text-gray-300">
-              <li><a href="tel:18004190066" className="hover:text-white font-semibold text-amber-300">24x7 Helpline: 1800-419-0066</a></li>
-              <li><a href="mailto:cs@bluestone.com" className="hover:text-white">Email: cs@bluestone.com</a></li>
-              <li><Link to="/cart" className="hover:text-white transition-colors">Track Your Order</Link></li>
-              <li><Link to="/stores" className="hover:text-white transition-colors">Book an In-Store Appointment</Link></li>
-              <li><Link to="/jewellery" className="hover:text-white transition-colors">Free Ring Sizer Guide</Link></li>
-              <li><Link to="/jewellery" className="hover:text-white transition-colors">Jewellery Care &amp; Cleaning</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 4: Popular Searches */}
-          <div className="space-y-3">
-            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider text-amber-300">
-              Popular Searches
-            </h4>
-            <ul className="space-y-2 text-gray-300">
-              <li><Link to="/jewellery?category=Rings" className="hover:text-white transition-colors">Engagement &amp; Solitaire Rings</Link></li>
-              <li><Link to="/jewellery?category=Earrings" className="hover:text-white transition-colors">Daily Wear Diamond Earrings</Link></li>
-              <li><Link to="/jewellery?category=Mangalsutras" className="hover:text-white transition-colors">Modern 18Kt Mangalsutra Designs</Link></li>
-              <li><Link to="/jewellery?category=Watch+Jewellery" className="hover:text-white transition-colors">Gold &amp; Diamond Watch Charms</Link></li>
-              <li><Link to="/jewellery?category=Coins" className="hover:text-white transition-colors">24Kt 999 Purity Gold Coins</Link></li>
-              <li><Link to="/jewellery?category=Bangles" className="hover:text-white transition-colors">Bridal Bangles &amp; Kadas</Link></li>
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Trust Badges & Certifications Row */}
-        <div className="py-8 border-b border-white/10 flex flex-wrap items-center justify-between gap-6 text-xs text-gray-400">
-          <div className="flex items-center gap-6 flex-wrap">
-            <div className="flex items-center gap-2">
-              <Award className="w-5 h-5 text-amber-400" />
-              <span>BIS 916 / 750 Hallmarked Gold</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-blue-400" />
-              <span>SGL &bull; IGI &bull; GIA Certified Diamonds</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Heart className="w-5 h-5 text-rose-400" />
-              <span>100% Conflict-Free Natural Diamonds</span>
-            </div>
-          </div>
-
-          <div className="text-gray-400 text-xs">
-            Safe &amp; Encrypted 256-Bit SSL Checkout
-          </div>
-        </div>
-
-        {/* Bottom Copyright & Disclaimer */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-gray-400 text-center md:text-left">
-          <p>
-            &copy; 2025 BlueStone Jewellery and Lifestyle Limited. All Rights Reserved.
+        {/* Copyright & Legal */}
+        <div className="flex flex-col items-center justify-between gap-3 pt-5 text-center md:flex-row md:text-left">
+          <p className="text-[10px] text-gray-500">
+            © {new Date().getFullYear()} Apsara Jewellery. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <Link to="/jewellery" className="hover:text-white">Privacy Policy</Link>
-            <span>&bull;</span>
-            <Link to="/jewellery" className="hover:text-white">Terms of Service</Link>
-            <span>&bull;</span>
-            <Link to="/stores" className="hover:text-white">Store Directory</Link>
-            <span>&bull;</span>
-            <Link to="/goldmine" className="hover:text-white">Gold Mine Terms</Link>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[10px] text-gray-500">
+            <Link
+              to="/jewellery"
+              className="transition-colors hover:text-white"
+            >
+              Privacy Policy
+            </Link>
+
+            <Link
+              to="/jewellery"
+              className="transition-colors hover:text-white"
+            >
+              Terms of Service
+            </Link>
+
+            <Link
+              to="/stores"
+              className="transition-colors hover:text-white"
+            >
+              Store Directory
+            </Link>
           </div>
         </div>
-
       </div>
     </footer>
   );
