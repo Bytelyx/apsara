@@ -8,8 +8,6 @@ import banner3 from '../../assets/banner3.jpg';
 import banner4 from '../../assets/banner4.jpg';
 
 export default function BannerCarouselSection() {
-  // Always use the locally imported banner images.
-  // This prevents old HOME_SECTIONS images from overriding them.
   const banners = [
     {
       title: 'Apsara Fancy Jewellery',
