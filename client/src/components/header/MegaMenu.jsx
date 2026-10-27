@@ -5,25 +5,25 @@ import { ArrowRight, Sparkles, Gem, ShieldCheck } from 'lucide-react';
 const MENU_CONTENT = {
   '10+1 Monthly Plans': {
     title: 'Gold Mine 10+1 Monthly Plan',
-    description: 'Pay 10 monthly installments and get the 11th installment sponsored 100% by BlueStone.',
+    description: 'Pay 10 monthly installments and get the 11th installment sponsored 100% by Apsara.',
     columns: [
       {
         heading: 'Plan Highlights',
         links: [
-          { label: 'How Gold Mine Works', url: '/goldmine' },
-          { label: 'Calculate Your Maturity Value', url: '/goldmine#calculator' },
-          { label: 'Enrol in Monthly Plan', url: '/goldmine' },
-          { label: 'Manage Existing Plan', url: '/goldmine' },
-          { label: 'Plan FAQs & Terms', url: '/goldmine#faqs' },
+          { label: 'How Gold Mine Works' },
+          { label: 'Calculate Your Maturity Value' },
+          { label: 'Enrol in Monthly Plan' },
+          { label: 'Manage Existing Plan' },
+          { label: 'Plan FAQs & Terms' },
         ],
       },
       {
         heading: 'Exclusive Benefits',
         links: [
-          { label: '100% Bonus on 11th Month', url: '/goldmine' },
-          { label: 'Zero Making Charge Perks', url: '/goldmine' },
-          { label: 'Redeem across 8,000+ Designs', url: '/jewellery' },
-          { label: 'Redeem Online or at 200+ Stores', url: '/stores' },
+          { label: '100% Bonus on 11th Month' },
+          { label: 'Zero Making Charge Perks' },
+          { label: 'Redeem across 8,000+ Designs' },
+          { label: 'Redeem Online or at 200+ Stores'},
         ],
       },
     ],
@@ -259,7 +259,7 @@ const MENU_CONTENT = {
           { label: 'Gifts for Her', url: '/jewellery' },
           { label: 'Gifts for Him', url: '/jewellery' },
           { label: 'Gifts for Kids', url: '/jewellery' },
-          { label: 'BlueStone E-Gift Cards', url: '/jewellery' },
+          { label: 'Apsara E-Gift Cards', url: '/jewellery' },
         ],
       },
     ],
