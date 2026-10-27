@@ -1,42 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { HOME_SECTIONS } from '../../data/homeSectionsData';
+
+import banner1 from '../../assets/banner1.jpg';
+import banner2 from '../../assets/banner2.jpg';
+import banner3 from '../../assets/banner3.jpg';
+import banner4 from '../../assets/banner4.jpg';
 
 export default function BannerCarouselSection() {
-  const sectionConfig =
-    HOME_SECTIONS.find(
-      (section) => section.key === 'carouselSection'
-    ) || {};
-
-  const banners = sectionConfig.value?.items?.length
-    ? sectionConfig.value.items
-    : [
-        {
-          title: 'Big Gold Upgrade',
-          imageUrl:
-            'https://kinclimg5.bluestone.com/f_jpg,c_scale,w_1128,b_rgb:ffffff/product/dynamic_banner/mobile/home/1720023543869-Mobilehomepage.jpg',
-          link: '/stores',
-        },
-        {
-          title: 'October Making Charge Offer',
-          imageUrl:
-            'https://kinclimg8.bluestone.com/f_jpg,c_scale,w_1128,b_rgb:ffffff/product/dynamic_banner/mobile/home/1791393400801-BS-MC-Offer---Mobile-Home-Page-Banner---1128-x-830.jpg',
-          link: '/jewellery',
-        },
-        {
-          title: 'October PreSet Solitaire Offer',
-          imageUrl:
-            'https://kinclimg3.bluestone.com/f_jpg,c_scale,w_1128,b_rgb:ffffff/product/dynamic_banner/mobile/home/1791393595150-BS-PS-Offer---Mobile-Home-Page-Banner---1128-x-830.jpg',
-          link: '/jewellery?category=Solitaires',
-        },
-        {
-          title: 'Gold Reserve Plan',
-          imageUrl:
-            'https://kinclimg6.bluestone.com/static/hp/m/mhome_grp_v3.jpg',
-          link: '/goldmine',
-        },
-      ];
+  // Always use the locally imported banner images.
+  // This prevents old HOME_SECTIONS images from overriding them.
+  const banners = [
+    {
+      title: 'Apsara Fancy Jewellery',
+      imageUrl: banner1,
+      link: '/jewellery',
+    },
+    {
+      title: 'October Making Charge Offer',
+      imageUrl: banner2,
+      link: '/jewellery',
+    },
+    {
+      title: 'October PreSet Solitaire Offer',
+      imageUrl: banner3,
+      link: '/jewellery',
+    },
+    {
+      title: 'Gold Reserve Plan',
+      imageUrl: banner4,
+      link: '/jewellery',
+    },
+  ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -145,7 +140,7 @@ export default function BannerCarouselSection() {
           border: 1px solid rgba(255, 255, 255, 0.7);
           border-radius: 50%;
           color: #fff;
-          background: rgba(255, 255, 255, 0.4);
+          background: rgba(20, 30, 50, 0.45);
           backdrop-filter: blur(5px);
           cursor: pointer;
           transform: translateY(-50%);
@@ -153,7 +148,7 @@ export default function BannerCarouselSection() {
         }
 
         .banner-carousel-arrow:hover {
-          background: rgba(255, 255, 255, 0.8);
+          background: rgba(255, 255, 255, 0.85);
           color: #14264f;
         }
 
@@ -226,13 +221,13 @@ export default function BannerCarouselSection() {
               {banners.map((banner, index) => (
                 <Link
                   key={`${banner.title}-${index}`}
-                  to={banner.link || '/jewellery'}
+                  to={banner.link}
                   className="banner-carousel-card"
                   aria-label={banner.title}
                 >
                   <img
                     src={banner.imageUrl}
-                    alt={banner.title || 'Jewellery offer'}
+                    alt={banner.title}
                     loading={index < 3 ? 'eager' : 'lazy'}
                     draggable="false"
                   />
