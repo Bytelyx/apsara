@@ -41,7 +41,7 @@ export default function SiteFooter() {
       title: 'Customer Care',
       links: [
         { label: 'Contact Us' },
-        { label: 'Track Your Order', to: '/cart' },
+        // { label: 'Track Your Order', to: '/cart' },
         { label: 'Gold Savings Plan' },
         { label: 'Jewellery Care', to: '/jewellery' },
         { label: 'FAQs & Support' },
