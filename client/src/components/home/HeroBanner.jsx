@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -41,6 +42,17 @@ const categoryClasses = categories.map(
   (category) => category.className
 );
 
+const categoryGradient = `
+  linear-gradient(
+    180deg,
+    #c9ada1 0%,
+    #d8beb2 18%,
+    #ead8ce 42%,
+    #f6ede7 68%,
+    #fffdfb 100%
+  )
+`;
+
 export default function HeroBanner() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
@@ -61,7 +73,7 @@ export default function HeroBanner() {
           margin: 0;
           padding: 0;
           color: #fff;
-          background: #fffefd;
+          background: #fffdfb;
           font-family: Georgia, 'Times New Roman', serif;
           overflow-x: clip;
           isolation: isolate;
@@ -78,7 +90,7 @@ export default function HeroBanner() {
           margin: 0;
           padding: 0;
           overflow: hidden;
-          background: #7d3038;
+          background: #c9ada1;
         }
 
         .bluestone-home .hero-video-frame {
@@ -89,7 +101,7 @@ export default function HeroBanner() {
           min-height: 0;
           margin: 0 auto;
           overflow: hidden;
-          background: #7d3038;
+          background: #c9ada1;
         }
 
         .bluestone-home .hero-video {
@@ -106,14 +118,14 @@ export default function HeroBanner() {
 
         .bluestone-home .hero-video-overlay {
           position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(55, 42, 32, 0.03) 0%,
-    rgba(133, 108, 87, 0.08) 45%,
-    rgba(190, 157, 140, 0.35) 75%,
-    #c9ada1 100%
+          inset: 0;
+          pointer-events: none;
+          background: linear-gradient(
+            to bottom,
+            rgba(55, 42, 32, 0.03) 0%,
+            rgba(133, 108, 87, 0.08) 45%,
+            rgba(190, 157, 140, 0.35) 75%,
+            #c9ada1 100%
           );
         }
 
@@ -121,18 +133,13 @@ export default function HeroBanner() {
 
         .bluestone-home .shop-category-section {
           position: relative;
-  width: 100%;
-  margin: -1px 0 0;
-  padding: 12px 0 32px;
-
-  background: linear-gradient(
-    180deg,
-    #c9ada1 0%,
-    #d8beb2 18%,
-    #ead8ce 42%,
-    #f6ede7 68%,
-    #fffdfb 100%
-          );
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          min-width: 0;
+          margin: -1px 0 0;
+          padding: 12px 0 32px;
+          background: ${categoryGradient};
         }
 
         .bluestone-home .shop-category-title {
@@ -175,14 +182,7 @@ export default function HeroBanner() {
           min-height: 0;
           overflow: hidden;
           border-radius: 18px;
-          background: linear-gradient(
-            180deg,
-  #c9ada1 0%,
-  #d8beb2 20%,
-  #ead8ce 45%,
-  #f6ede7 72%,
-  #fffdfb 100%
-          );
+          background: #ead8ce;
           box-shadow: 0 7px 15px rgba(0, 0, 0, 0.22);
           text-decoration: none;
           isolation: isolate;
@@ -425,6 +425,8 @@ export default function HeroBanner() {
             object-position: center;
           }
 
+          /* Same gradient as desktop — no maroon override */
+
           .bluestone-home .shop-category-section {
             position: relative;
             display: block;
@@ -434,14 +436,7 @@ export default function HeroBanner() {
             margin: 0;
             padding: 14px 0 24px;
             overflow: hidden;
-            background: linear-gradient(
-              180deg,
-              #7d3038 0%,
-              #99525a 14%,
-              #c28b8e 34%,
-              #e8cecc 58%,
-              #fffefd 90%
-            );
+            background: ${categoryGradient};
           }
 
           .bluestone-home .shop-category-title {
@@ -450,11 +445,11 @@ export default function HeroBanner() {
             max-width: 100%;
             margin: 0 auto 14px;
             padding: 0 8px;
+            color: #fff;
             font-size: clamp(22px, 6vw, 28px);
             line-height: 1.25;
             text-align: center;
             overflow-wrap: normal;
-            color: #76584b;
           }
 
           .bluestone-home .shop-category-grid {
@@ -488,13 +483,13 @@ export default function HeroBanner() {
           /* Reset desktop positions */
 
           ${categoryClasses.map(
-        (className) => `
+            (className) => `
               .bluestone-home .${className} {
                 grid-column: auto;
                 grid-row: auto;
               }
             `
-      ).join('')}
+          ).join('')}
 
           /* First two rows */
 
