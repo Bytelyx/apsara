@@ -30,23 +30,21 @@ export default function SiteFooter() {
     {
       title: 'Explore',
       links: [
-        { label: 'Our Story', to: '/stores' },
+        { label: 'Our Story' },
         { label: 'All Jewellery', to: '/jewellery' },
         { label: 'Rings', to: '/jewellery/rings' },
         { label: 'Earrings', to: '/jewellery/earrings' },
         { label: 'Necklaces', to: '/jewellery/necklaces' },
-        { label: 'Store Locator', to: '/stores' },
       ],
     },
     {
       title: 'Customer Care',
       links: [
-        { label: 'Contact Us', to: '/stores' },
+        { label: 'Contact Us' },
         { label: 'Track Your Order', to: '/cart' },
-        { label: 'Book an Appointment', to: '/stores' },
-        { label: 'Gold Savings Plan', to: '/goldmine' },
+        { label: 'Gold Savings Plan' },
         { label: 'Jewellery Care', to: '/jewellery' },
-        { label: 'FAQs & Support', to: '/stores' },
+        { label: 'FAQs & Support' },
       ],
     },
     {
@@ -217,7 +215,7 @@ export default function SiteFooter() {
               </a>
 
               <Link
-                to="/stores"
+                // to="/stores"
                 className="flex min-w-0 items-start gap-3 transition-colors hover:text-[#D8B779]"
               >
                 <MapPin
@@ -331,21 +329,21 @@ export default function SiteFooter() {
           <div className="flex w-full min-w-0 flex-wrap items-center justify-center gap-x-4 gap-y-3 text-xs text-gray-500 md:w-auto md:justify-end">
 
             <Link
-              to="/jewellery"
+              // to="/jewellery"
               className="break-words transition-colors hover:text-white"
             >
               Privacy Policy
             </Link>
 
             <Link
-              to="/jewellery"
+              // to="/jewellery"
               className="break-words transition-colors hover:text-white"
             >
               Terms of Service
             </Link>
 
             <Link
-              to="/stores"
+              // to="/stores"
               className="break-words transition-colors hover:text-white"
             >
               Store Directory
