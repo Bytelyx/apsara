@@ -5,7 +5,7 @@ import FeaturedProductsSection from '../components/home/FeaturedProductsSection'
 // import CollectionSection from '../components/home/CollectionSection';
 // import VideoSection from '../components/home/VideoSection';
 // import TrendingSection from '../components/home/TrendingSection';
-import ReelsSection from '../components/home/ReelsSection';
+// import ReelsSection from '../components/home/ReelsSection';
 // import AlchemyMaterialsSection from '../components/home/AlchemyMaterialsSection';
 // import DesignLedSection from '../components/home/DesignLedSection';
 // import RainforestSection from '../components/home/RainforestSection';
@@ -46,7 +46,7 @@ export default function HomePage() {
       {/* <TrendingSection /> */}
 
       {/* 9. Watch & Shop Reels */}
-      <ReelsSection />
+      {/* <ReelsSection /> */}
 
       {/* 10. Alchemy of Materials */}
       {/* <AlchemyMaterialsSection /> */}
