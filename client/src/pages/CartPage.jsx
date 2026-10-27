@@ -559,8 +559,7 @@ export default function CartPage() {
 
                 {!isLoggedIn && (
                   <p className="text-center text-xs text-gray-500">
-                    Login ചെയ്തശേഷം നിങ്ങളുടെ delivery details
-                    വീണ്ടും നൽകേണ്ടതില്ല.
+                    After logging in, you don’t need to enter your delivery details again.
                   </p>
                 )}
               </form>
