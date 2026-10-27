@@ -13,7 +13,7 @@ import hand8 from '../../assets/hand8.png';
 import hand9 from '../../assets/hand9.png';
 
 const firstRow = [
-  { id: 1, image: hand1, alt: 'BlueStone Man collection', category: 'Watch Accessories' },
+  { id: 1, image: hand1, alt: 'Apsara Man collection', category: 'Watch Accessories' },
   { id: 2, image: hand2, alt: 'Dainty Dreams jewellery', category: 'Rings' },
   { id: 3, image: hand3, alt: 'Evil Eye collection', category: 'Bracelets' },
   { id: 4, image: hand4, alt: 'View all collection', category: 'All' },

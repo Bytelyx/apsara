@@ -19,102 +19,22 @@ import mensJewellery from '../../assets/mensjewellery.png';
 import solitaires from '../../assets/solitaires.png';
 
 const categories = [
-  {
-    name: 'Rings',
-    className: 'cat-rings',
-    path: '/jewellery/rings',
-    image: rings,
-  },
-  {
-    name: 'Earrings',
-    className: 'cat-earrings',
-    path: '/jewellery/earrings',
-    image: earings,
-  },
-  {
-    name: 'Pendants',
-    className: 'cat-pendants',
-    path: '/jewellery/pendants',
-    image: pendants,
-  },
-  {
-    name: 'Chains',
-    className: 'cat-chains',
-    path: '/jewellery/chains',
-    image: chains,
-  },
-  {
-    name: 'Watch Accessories',
-    className: 'cat-water',
-    path: '/jewellery/accessories',
-    image: watchAccessories,
-  },
-  {
-    name: 'Necklaces',
-    className: 'cat-necklaces',
-    path: '/jewellery/necklaces',
-    image: necklaces,
-  },
-  {
-    name: 'Gold Coins',
-    className: 'cat-coins',
-    path: '/jewellery/gold-coins',
-    image: goldcoins,
-  },
-  {
-    name: 'Bangles',
-    className: 'cat-bangles',
-    path: '/jewellery/bangles',
-    image: bangles,
-  },
-  {
-    name: 'Kadas',
-    className: 'cat-kadas',
-    path: '/jewellery/kadas',
-    image: kadas,
-  },
-  {
-    name: 'Anklets',
-    className: 'cat-anklets',
-    path: '/jewellery/anklets',
-    image: anklets,
-  },
-  {
-    name: 'Kids Jewellery',
-    className: 'cat-kids',
-    path: '/jewellery/kids',
-    image: kidsJewellery,
-  },
-  {
-    name: 'Nose Pins',
-    className: 'cat-nosepins',
-    path: '/jewellery/nose-pins',
-    image: nosepins,
-  },
-  {
-    name: 'Mangalsutras',
-    className: 'cat-mangalsutras',
-    path: '/jewellery/mangalsutras',
-    image: mangalsutras,
-  },
-  {
-    name: 'Bracelets',
-    className: 'cat-bracelets',
-    path: '/jewellery/bracelets',
-    image: bracelets,
-  },
-  {
-    name: "Men's Jewellery",
-    className: 'cat-mens',
-    path: '/jewellery/mens',
-    image: mensJewellery,
-  },
-  {
-    name: 'Solitaires',
-    className: 'cat-solitaires',
-    path: '/jewellery/solitaires',
-    image: solitaires,
-  },
+  { name: 'Rings', className: 'cat-rings', path: '/jewellery/rings', image: rings },
+  { name: 'Earrings', className: 'cat-earrings', path: '/jewellery/earrings', image: earings },
+  { name: 'Pendants', className: 'cat-pendants', path: '/jewellery/pendants', image: pendants },
+  { name: 'Chains', className: 'cat-chains', path: '/jewellery/chains', image: chains },
+  { name: 'Watch Accessories', className: 'cat-water', path: '/jewellery/accessories', image: watchAccessories },
+  { name: 'Necklaces', className: 'cat-necklaces', path: '/jewellery/necklaces', image: necklaces },
+  { name: 'Gold Coins', className: 'cat-coins', path: '/jewellery/gold-coins', image: goldcoins },
+  { name: 'Bangles', className: 'cat-bangles', path: '/jewellery/bangles', image: bangles },
+  { name: 'Kadas', className: 'cat-kadas', path: '/jewellery/kadas', image: kadas },
+  { name: 'Anklets', className: 'cat-anklets', path: '/jewellery/anklets', image: anklets },
+  { name: 'Kids Jewellery', className: 'cat-kids', path: '/jewellery/kids', image: kidsJewellery },
+  { name: 'Nose Pins', className: 'cat-nosepins', path: '/jewellery/nose-pins', image: nosepins },
+  { name: 'Mangalsutras', className: 'cat-mangalsutras', path: '/jewellery/mangalsutras', image: mangalsutras },
+  { name: 'Bracelets', className: 'cat-bracelets', path: '/jewellery/bracelets', image: bracelets },
+  { name: "Men's Jewellery", className: 'cat-mens', path: '/jewellery/mens', image: mensJewellery },
+  { name: 'Solitaires', className: 'cat-solitaires', path: '/jewellery/solitaires', image: solitaires },
 ];
 
 const categoryClasses = categories.map(
@@ -141,7 +61,7 @@ export default function HeroBanner() {
           margin: 0;
           padding: 0;
           color: #fff;
-          background: #f3e0dc;
+          background: #fffefd;
           font-family: Georgia, 'Times New Roman', serif;
           overflow-x: clip;
           isolation: isolate;
@@ -182,35 +102,36 @@ export default function HeroBanner() {
           transition: opacity 700ms ease;
         }
 
+        /* VIDEO BLENDS INTO CATEGORY SECTION */
+
         .bluestone-home .hero-video-overlay {
           position: absolute;
-          inset: 0;
-          pointer-events: none;
-          background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.08) 0%,
-            transparent 48%,
-            rgba(76, 24, 30, 0.2) 72%,
-            #7d3038 100%
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(55, 42, 32, 0.03) 0%,
+    rgba(133, 108, 87, 0.08) 45%,
+    rgba(190, 157, 140, 0.35) 75%,
+    #c9ada1 100%
           );
         }
 
-        /* CATEGORY SECTION */
+        /* SHOP BY CATEGORY */
 
         .bluestone-home .shop-category-section {
           position: relative;
-          display: block;
-          width: 100%;
-          max-width: 100%;
-          min-width: 0;
-          margin: -1px 0 0;
-          padding: 12px 0 32px;
-          background: linear-gradient(
-            180deg,
-            #7d3038 0%,
-            #a45d64 16%,
-            #d4a6a6 48%,
-            #fffefd 100%
+  width: 100%;
+  margin: -1px 0 0;
+  padding: 12px 0 32px;
+
+  background: linear-gradient(
+    180deg,
+    #c9ada1 0%,
+    #d8beb2 18%,
+    #ead8ce 42%,
+    #f6ede7 68%,
+    #fffdfb 100%
           );
         }
 
@@ -255,9 +176,12 @@ export default function HeroBanner() {
           overflow: hidden;
           border-radius: 18px;
           background: linear-gradient(
-            135deg,
-            #7d3038,
-            #d4a6a6
+            180deg,
+  #c9ada1 0%,
+  #d8beb2 20%,
+  #ead8ce 45%,
+  #f6ede7 72%,
+  #fffdfb 100%
           );
           box-shadow: 0 7px 15px rgba(0, 0, 0, 0.22);
           text-decoration: none;
@@ -513,8 +437,10 @@ export default function HeroBanner() {
             background: linear-gradient(
               180deg,
               #7d3038 0%,
-              #b77b80 35%,
-              #f3e0dc 100%
+              #99525a 14%,
+              #c28b8e 34%,
+              #e8cecc 58%,
+              #fffefd 90%
             );
           }
 
@@ -528,6 +454,7 @@ export default function HeroBanner() {
             line-height: 1.25;
             text-align: center;
             overflow-wrap: normal;
+            color: #76584b;
           }
 
           .bluestone-home .shop-category-grid {
@@ -558,16 +485,16 @@ export default function HeroBanner() {
             transform: none;
           }
 
-          /* Reset all desktop grid positions */
+          /* Reset desktop positions */
 
           ${categoryClasses.map(
-            (className) => `
+        (className) => `
               .bluestone-home .${className} {
                 grid-column: auto;
                 grid-row: auto;
               }
             `
-          ).join('')}
+      ).join('')}
 
           /* First two rows */
 
@@ -761,28 +688,21 @@ export default function HeroBanner() {
       >
         <div className="hero-video-frame">
           <video
+            key="/videos/heroVideo.mp4"
             className="hero-video"
             autoPlay
             muted
             playsInline
             loop
-            preload="metadata"
+            preload="auto"
             onLoadedData={() => setIsVideoLoaded(true)}
             poster="https://kinclimg2.bluestone.com/static/hp/d/v25_poster.jpg"
-            style={{
-              opacity: isVideoLoaded ? 1 : 0.9,
-            }}
+            style={{ opacity: isVideoLoaded ? 1 : 0.9 }}
           >
             <source
-              src="https://kinvid1.bluestone.com/output/mp4/VL_VIDEO_1.mp4/VL_VIDEO_1.mp4"
+              src="/videos/heroVideo.mp4"
               type="video/mp4"
             />
-
-            <source
-              src="/videos/VL_VIDEO_1.mp4"
-              type="video/mp4"
-            />
-
             Your browser does not support the video tag.
           </video>
 
