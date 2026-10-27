@@ -44,7 +44,7 @@ export default function BlueStonePromiseSection() {
             Peace Of Mind Guaranteed
           </span>
           <h2 className="font-serif text-3xl font-bold text-bluestone-navy mt-1">
-            The BlueStone Promise
+            The Apsara Promise
           </h2>
           <p className="mt-1 text-xs sm:text-sm text-gray-500">
             A decade of building India's most trusted omnichannel jewellery destination.
